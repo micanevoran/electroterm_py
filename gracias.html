@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gracias por tu consulta | ElectroTerm Paraguay</title>
+  <meta name="description" content="Recibimos tu consulta. El equipo de ElectroTerm te va a responder a la brevedad.">
+  <meta name="robots" content="noindex">
+  <link rel="shortcut icon" href="img/icons/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/paraguay.css" />
+  <style>
+    .gracias{ min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center;
+      background:var(--neutral-light); padding:calc(var(--nav-h) + var(--sp-2xl)) var(--sp-sm) var(--sp-2xl); }
+    .gracias__inner{ max-width:620px; }
+    .gracias__icon{ width:88px; height:88px; margin:0 auto var(--sp-md); border-radius:50%;
+      background:color-mix(in srgb, var(--teal) 15%, #fff); display:flex; align-items:center; justify-content:center; color:var(--teal); }
+    .gracias__eyebrow{ font-family:var(--font-mono); font-size:.8rem; font-weight:600; letter-spacing:.14em;
+      text-transform:uppercase; color:var(--primary); margin-bottom:var(--sp-sm); }
+    .gracias h1{ font-family:var(--font-display); font-size:var(--fs-2xl); font-weight:800; line-height:1.1;
+      letter-spacing:-0.02em; color:var(--primary-dark); margin-bottom:var(--sp-sm); }
+    .gracias p{ font-size:1.15rem; line-height:1.65; color:var(--neutral-dark); margin-bottom:var(--sp-lg); }
+    .gracias__actions{ display:flex; gap:var(--sp-sm); justify-content:center; flex-wrap:wrap; }
+    .btn--outline{ background:transparent; border:1.5px solid var(--neutral-warm); color:var(--primary-dark); }
+    .btn--outline:hover{ border-color:var(--primary); color:var(--primary); background:transparent; }
+    @media (max-width:520px){ .gracias__actions{ flex-direction:column; align-items:stretch; } .gracias__actions .btn{ width:100%; justify-content:center; } }
+  </style>
+</head>
+<body class="nav-solid">
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo"><img src="img/logo_primary.svg" alt="ElectroTerm Paraguay" /></a>
+      <nav class="navbar__nav" id="desktopNav">
+        <a href="nosotros.html" class="navbar__link">Nosotros</a>
+        <a href="servicios.html" class="navbar__link">Servicios</a>
+        <a href="servicios.html#mantenimiento" class="navbar__link">Mantenimiento</a>
+        <a href="index.html#casos" class="navbar__link">Experiencia</a>
+        <a href="recursos.html" class="navbar__link">Recursos</a>
+        <a href="index.html#contacto" class="navbar__link navbar__link--cta">Contacto</a>
+      </nav>
+      <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="navbar__mobile" id="mobileNav" aria-hidden="true">
+      <a href="nosotros.html" class="navbar__mobile-link">Nosotros</a>
+      <a href="servicios.html" class="navbar__mobile-link">Servicios</a>
+      <a href="servicios.html#mantenimiento" class="navbar__mobile-link">Mantenimiento</a>
+      <a href="index.html#casos" class="navbar__mobile-link">Experiencia</a>
+      <a href="recursos.html" class="navbar__mobile-link">Recursos</a>
+      <a href="index.html#contacto" class="navbar__mobile-link">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- ===== GRACIAS ===== -->
+  <section class="gracias">
+    <div class="gracias__inner">
+      <div class="gracias__icon" aria-hidden="true">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      </div>
+      <p class="gracias__eyebrow">Consulta recibida</p>
+      <h1>¡Gracias por escribirnos!</h1>
+      <p>Recibimos tu consulta y la estamos revisando. Te vamos a responder a la brevedad, normalmente dentro de las 24 horas hábiles. Si es urgente, también podés escribirnos por WhatsApp.</p>
+      <div class="gracias__actions">
+        <a href="index.html" class="btn btn--accent">Volver al inicio</a>
+        <a href="recursos.html" class="btn btn--outline">Explorar recursos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo"><img src="img/logo_accent_cyan.svg" alt="ElectroTerm" /></a>
+        <p>Empresa argentina con más de 40 años diseñando sistemas de climatización de alta complejidad para hospitales, data centers, edificios e industrias. Hoy en Paraguay.</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="label-sm">SERVICIOS</h4>
+        <span>Ingeniería</span>
+        <span>Instalación y Puesta en Marcha</span>
+        <span>Mantenimiento</span>
+        <span>Distribución</span>
+      </div>
+      <div class="footer__col">
+        <h4 class="label-sm">SECTORES</h4>
+        <span>Salud</span>
+        <span>Data centers</span>
+        <span>Corporativo</span>
+        <span>Industria</span>
+        <span>Tiendas y Centros Comerciales</span>
+        <span>Supermercados y farmacias</span>
+        <span>Gastronomía</span>
+        <span>Residencial</span>
+      </div>
+      <div class="footer__col">
+        <h4 class="label-sm">CONTACTO</h4>        <span>+595 985 368085</span>
+        <span>contacto@electroterm.com.py</span>      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="label-sm">2026 | ELECTROTERM®</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "e60e925e350e4e89b32b69f2c2d126ea"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

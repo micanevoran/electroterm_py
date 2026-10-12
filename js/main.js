@@ -246,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
           });
           const out = await res.json().catch(() => ({}));
-          if (res.ok && out.success) { done('Enviado ✓'); return; }
+          if (res.ok && out.success) { window.location.href = 'gracias.html'; return; }
         } catch (err) {
           /* si falla el envío, caemos a WhatsApp */
         }
