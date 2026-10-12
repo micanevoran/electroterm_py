@@ -7,8 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Navbar: scroll shadow ── */
   const navbar = document.getElementById('navbar');
+  const forceSolid = document.body.classList.contains('nav-solid');
   const onScroll = () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 10);
+    navbar.classList.toggle('scrolled', forceSolid || window.scrollY > 10);
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
@@ -195,21 +196,90 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ── Contact form: basic UX feedback ── */
-  const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', e => {
+  /* ── Contact form: envío real + fallback a WhatsApp ── */
+  // ---- Formularios de contacto (Empresa / Particular) ----
+  const contactForms = document.querySelectorAll('.js-contact-form');
+  if (contactForms.length) {
+    // ── Backend: Web3Forms ──────────────────────────────────────────
+    //   Pegá la access key que te da web3forms.com (atada a contacto@electroterm.com.py).
+    //   Si queda vacía o el envío falla, el form cae a WhatsApp con los datos cargados,
+    //   así ningún lead se pierde.
+    const WEB3FORMS_KEY   = '2649af76-3d52-4042-a10d-08024f4dd11d';
+    const FORM_ENDPOINT   = 'https://api.web3forms.com/submit';
+    const WHATSAPP_NUMBER = '595985368085';
+
+    const handleSubmit = async (e) => {
       e.preventDefault();
-      const btn = contactForm.querySelector('button[type="submit"]');
-      btn.textContent = 'Enviado ✓';
+      const form = e.currentTarget;
+      const btn = form.querySelector('button[type="submit"]');
+      const original = btn.textContent;
       btn.disabled = true;
-      btn.style.background = 'var(--teal)';
-      setTimeout(() => {
-        btn.textContent = 'Enviar Consulta';
-        btn.disabled = false;
-        btn.style.background = '';
-        contactForm.reset();
-      }, 3000);
+      btn.textContent = 'Enviando…';
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      data.tipo = form.dataset.tipo || '';
+
+      const done = (label) => {
+        btn.textContent = label;
+        btn.style.background = 'var(--teal)';
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.disabled = false;
+          btn.style.background = '';
+          form.reset();
+        }, 3500);
+      };
+
+      const keyOk = WEB3FORMS_KEY && WEB3FORMS_KEY !== 'TU_ACCESS_KEY';
+      if (keyOk) {
+        try {
+          const res = await fetch(FORM_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+              access_key: WEB3FORMS_KEY,
+              subject: 'Nuevo contacto web (' + (data.tipo || '') + '): ' + (data.proyecto || ''),
+              from_name: 'Web ElectroTerm PY',
+              ...data,
+              origen: 'web-py',
+              fecha: new Date().toISOString()
+            })
+          });
+          const out = await res.json().catch(() => ({}));
+          if (res.ok && out.success) { done('Enviado ✓'); return; }
+        } catch (err) {
+          /* si falla el envío, caemos a WhatsApp */
+        }
+      }
+
+      // Fallback sin backend: abrir WhatsApp con el mensaje ya armado
+      const lines = [
+        'Hola ElectroTerm, quiero hacer una consulta.', '',
+        'Tipo: '     + (data.tipo     || ''),
+        'Nombre: '   + (data.nombre   || ''),
+        'Empresa: '  + (data.empresa  || ''),
+        'Rol: '      + (data.rol      || ''),
+        'Email: '    + (data.email    || ''),
+        'Teléfono: ' + (data.telefono || ''),
+        'Necesita: ' + (data.proyecto || ''),
+        'Mensaje: '  + (data.mensaje  || '')
+      ].filter(l => !l.endsWith(': '));
+      const msg = encodeURIComponent(lines.join('\n'));
+      window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + msg, '_blank');
+      done('Te llevamos a WhatsApp ✓');
+    };
+
+    contactForms.forEach(f => f.addEventListener('submit', handleSubmit));
+
+    // Toggle de solapas Empresa / Particular
+    const tabs = document.querySelectorAll('.contacto__tab');
+    const panes = document.querySelectorAll('.contacto__form[data-pane]');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.tab;
+        tabs.forEach(t => t.classList.toggle('is-active', t === tab));
+        panes.forEach(p => p.classList.toggle('is-hidden', p.dataset.pane !== target));
+      });
     });
   }
 
@@ -325,4 +395,88 @@ const clientesCarousel = () => {
 // Llamar la función
 clientesCarousel();
 
+});
+
+/* ===== Service: fondo animado (aire) + reveal + contadores ===== */
+document.addEventListener('DOMContentLoaded', () => {
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Aparición al scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  if (revealEls.length) {
+    if (reduce || !('IntersectionObserver' in window)) {
+      revealEls.forEach(el => el.classList.add('in'));
+    } else {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.15 });
+      revealEls.forEach(el => io.observe(el));
+    }
+  }
+
+  // Contador de stats
+  const counters = document.querySelectorAll('[data-count]');
+  if (counters.length && 'IntersectionObserver' in window) {
+    const io2 = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target; io2.unobserve(el);
+        const target = parseInt(el.dataset.count, 10) || 0;
+        const prefix = el.dataset.prefix || '';
+        if (reduce) { el.textContent = prefix + target; return; }
+        const dur = 1400, t0 = performance.now();
+        const tick = (t) => {
+          const p = Math.min(1, (t - t0) / dur);
+          el.textContent = prefix + Math.floor(p * target);
+          if (p < 1) requestAnimationFrame(tick); else el.textContent = prefix + target;
+        };
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(c => io2.observe(c));
+  }
+
+  // Campo de partículas (aire) en el panel premium
+  const canvas = document.getElementById('svcFlow');
+  if (canvas && !reduce) {
+    const ctx = canvas.getContext('2d');
+    let w = 0, h = 0, dpr = 1, particles = [], mouseX = 0.5, mouseY = 0.5, raf = 0;
+    const NUM = 46;
+    const rand = (a, b) => a + Math.random() * (b - a);
+    const init = () => {
+      const r = canvas.getBoundingClientRect();
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = r.width; h = r.height;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      particles = Array.from({ length: NUM }, () => {
+        const y = rand(0, h);
+        return { x: rand(0, w), base: y, y: y, r: rand(0.6, 2.2), vx: rand(0.15, 0.5), amp: rand(6, 22), phase: rand(0, Math.PI * 2), sp: rand(0.006, 0.016) };
+      });
+    };
+    const draw = (t) => {
+      ctx.clearRect(0, 0, w, h);
+      const ox = (mouseX - 0.5) * 18, oy = (mouseY - 0.5) * 10;
+      for (const p of particles) {
+        p.x += p.vx;
+        if (p.x > w + 20) { p.x = -20; p.base = rand(0, h); }
+        p.y = p.base + Math.sin(t * p.sp + p.phase) * p.amp;
+        const x = p.x + ox, y = p.y + oy;
+        ctx.strokeStyle = 'rgba(0,180,216,0.10)'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(x - 14, y); ctx.lineTo(x, y); ctx.stroke();
+        ctx.fillStyle = 'rgba(120,205,230,0.55)';
+        ctx.beginPath(); ctx.arc(x, y, p.r, 0, Math.PI * 2); ctx.fill();
+      }
+      raf = requestAnimationFrame(draw);
+    };
+    init(); raf = requestAnimationFrame(draw);
+    let rt;
+    window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { cancelAnimationFrame(raf); init(); raf = requestAnimationFrame(draw); }, 200); });
+    const host = canvas.closest('.svc-premium') || window;
+    host.addEventListener('mousemove', (e) => {
+      const r = canvas.getBoundingClientRect();
+      mouseX = (e.clientX - r.left) / r.width;
+      mouseY = (e.clientY - r.top) / r.height;
+    });
+  }
 });

@@ -11,7 +11,7 @@
 /* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@300;400;500;600&display=swap');
 
 /* ── Custom Properties ── */
 :root {
@@ -53,6 +53,18 @@
   /* Transitions */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --dur: 0.3s;
+
+  /* ── Escala tipográfica fluida — anclas 360px ↔ 1240px (crecen en sincronía) ── */
+  --fs-tag:     clamp(1.2rem, 1.08rem + 0.55vw, 1.5rem);
+  --fs-xs:      clamp(1.4rem, 1.20rem + 0.91vw, 1.9rem);
+  --fs-sm:      clamp(1.4rem, 1.15rem + 1.09vw, 2rem);
+  --fs-md:      clamp(1.75rem, 1.44rem + 1.36vw, 2.5rem);
+  --fs-lg:      clamp(1.9rem, 1.61rem + 1.27vw, 2.6rem);
+  --fs-xl:      clamp(2rem, 1.67rem + 1.45vw, 2.8rem);
+  --fs-2xl:     clamp(2rem, 1.51rem + 2.18vw, 3.2rem);
+  --fs-3xl:     clamp(2.6rem, 2.23rem + 1.64vw, 3.5rem);
+  --fs-hero:    clamp(2.3rem, 1.91rem + 1.73vw, 3.25rem);
+  --fs-display: clamp(2.5rem, 1.68rem + 3.64vw, 4.5rem);
 }
 
 /* ── Reset ── */
@@ -174,8 +186,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   height: var(--nav-h);
 }
 .navbar__logo img {
-  height: 8vh;
-  padding: 1vh 0;
+  height: 46px;
+  padding: 0;
   width: auto;
 }
 
@@ -187,8 +199,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .navbar__link {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--primary-dark);
   padding: 0.25rem 0;
@@ -327,7 +339,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .hero__title {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-size: var(--fs-display);
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.025em;
@@ -455,7 +467,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .obras__title {
   font-family: var(--font-display);
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: var(--fs-md);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.1;
@@ -537,7 +549,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .servicios__title {
   font-family: var(--font-display);
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: var(--fs-md);
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--neutral-black);
@@ -664,7 +676,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .clientes__tagline {
   font-family: var(--font-body);
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: var(--fs-md);
   text-align: center;
   color: var(--neutral-dark);
   margin-bottom: 2vh;
@@ -743,7 +755,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .contacto__title {
   font-family: var(--font-display);
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: var(--fs-md);
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--white);
@@ -902,11 +914,11 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 @media (min-width: 768px) {
   /* Navbar */
   .navbar__inner {
-    height: 100px;
+    height: 64px;
   }
   .navbar__logo img {
-    height: 9.5vh;
-    padding: 1vh 0;
+    height: 46px;
+    padding: 0;
     width: auto;
   }
   .navbar__hamburger {
@@ -1035,8 +1047,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     height: var(--nav-h); 
   }
   .navbar__logo img {
-    height: 10vh;
-    padding: 0.5vh 0;
+    height: 46px;
+    padding: 0;
     margin-left: 3vw;
     width: auto;
   }
@@ -1252,15 +1264,15 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   /* Navbar */
   .navbar__inner { 
     padding-right: 5vw;
-    height: 90px; 
+    height: 64px; 
   }
   .navbar__logo img {
-    height: 11vh;
-    padding: 1vh 0;
+    height: 48px;
+    padding: 0;
     width: auto;
   }
   .navbar__link {
-  font-size: 1rem;
+  font-size: 0.72rem;
   }
 
   /* Hero */

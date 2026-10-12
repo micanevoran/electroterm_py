@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ElectroTerm Paraguay | Ingeniería de climatización crítica</title>
-  <meta name="description" content="Empresa argentina con más de 40 años de trayectoria en climatización de alta complejidad —hospitales, data centers y edificios corporativos—, ahora en Paraguay junto a constructoras y desarrolladores locales.">
+  <meta name="description" content="ElectroTerm en Paraguay: ingeniería de climatización de alta complejidad para constructoras y desarrolladores —hospitales, data centers, corporativo— y Services de mantenimiento. Respaldados por 40 años y +120 obras en Argentina.">
   <meta name="author" content="Ana Micaela Nevoran">
   <link rel="shortcut icon" href="img/icons/favicon.svg">
   <link rel="stylesheet" href="css/styles.css" />
@@ -20,8 +20,10 @@
         <img src="img/logo_primary.svg" alt="ElectroTerm Paraguay" />
       </a>
       <nav class="navbar__nav" id="desktopNav">
-        <a href="nosotros.html" class="navbar__link">Nosotros</a>        <a href="#casos" class="navbar__link">Proyectos</a>
-        <a href="servicio.html" class="navbar__link">Servicio</a>
+        <a href="nosotros.html" class="navbar__link">Nosotros</a>
+        <a href="servicios.html" class="navbar__link">Servicios</a>
+        <a href="servicios.html#mantenimiento" class="navbar__link">Mantenimiento</a>
+        <a href="#casos" class="navbar__link">Experiencia</a>
         <a href="recursos.html" class="navbar__link">Recursos</a>
         <a href="#contacto" class="navbar__link navbar__link--cta">Contacto</a>
       </nav>
@@ -30,21 +32,23 @@
       </button>
     </div>
     <nav class="navbar__mobile" id="mobileNav" aria-hidden="true">
-      <a href="nosotros.html" class="navbar__mobile-link">Nosotros</a>      <a href="#casos" class="navbar__mobile-link">Proyectos</a>
-      <a href="servicio.html" class="navbar__mobile-link">Servicio</a>
+      <a href="nosotros.html" class="navbar__mobile-link">Nosotros</a>
+      <a href="servicios.html" class="navbar__mobile-link">Servicios</a>
+      <a href="servicios.html#mantenimiento" class="navbar__mobile-link">Mantenimiento</a>
+      <a href="#casos" class="navbar__mobile-link">Experiencia</a>
       <a href="recursos.html" class="navbar__mobile-link">Recursos</a>
       <a href="#contacto" class="navbar__mobile-link">Contacto</a>
     </nav>
   </header>
 
   <!-- ===== HERO ===== -->
-  <section class="hero-ov" id="inicio" style="background-image:url('img/hero_prueba1.jpg')">
+  <section class="hero-ov" id="inicio" style="background-image:url('img/hero_prueba2.png')">
     <div class="hero-ov__overlay"></div>
     <div class="hero-ov__inner">
-      <span class="hero-ov__eyebrow">La ingeniería detrás de los proyectos más exigentes de Argentina</span>
-      <h1 class="hero-ov__title">Ahora en <span class="accent">Paraguay.</span></h1>
+      <span class="hero-ov__eyebrow">40 años y más de 120 obras en Argentina</span>
+      <h1 class="hero-ov__title">Ingeniería de Climatización<br>ahora en <span class="accent">Paraguay.</span></h1>
       <p class="hero-ov__desc">
-        Ingeniería de climatización de alta complejidad para las constructoras y desarrolladores que lideran hospitales, data centers, edificios corporativos e infraestructura crítica.
+        Diseño e ingeniería de alta complejidad para hospitales, data centers, edificios corporativos, centros comerciales e infraestructura crítica, con el respaldo de cuatro décadas de obra ejecutada.
       </p>
       <div class="hero-ov__actions">
         <a href="#contacto" class="btn btn--accent">CONVERSEMOS</a>
@@ -53,162 +57,30 @@
     </div>
   </section>
 
-  <!-- ===== PROPUESTA DE VALOR ===== -->
-  <section class="section section--alt">
+    <!-- ===== SERVICIOS (verticales) ===== -->
+  <section class="section" id="servicios">
     <div class="wrap">
       <div class="section__head">
-        <span class="label-sm">Por qué ElectroTerm</span>
-        <h2 class="section__title">Somos ingeniería.</h2>
-        <p class="section__lead">Diseñamos climatización para los entornos donde no hay margen de error.</p>
+        <h2 class="section__title">Nuestros Servicios</h2>
       </div>
       <div class="valor valor--media">
-        <article class="valor__item" style="background-image:url('img/valor-complejidad.png')">
-          <h3 class="valor__title">Alta complejidad</h3>
-          <p class="valor__text">Los entornos donde la climatización no es confort, sino parte crítica de la operación: quirófanos, data centers, laboratorios e industria.</p>
-        </article>
-        <article class="valor__item" style="background-image:url('img/valor-constructoras.png')">
-          <h3 class="valor__title">Aliado de constructoras</h3>
-          <p class="valor__text">Aportamos la ingeniería del sistema de climatización. Ustedes conservan el cliente y el contrato; nosotros, el respaldo técnico.</p>
-        </article>
-        <article class="valor__item" style="background-image:url('img/valor-integral.png')">
-          <h3 class="valor__title">De punta a punta</h3>
-          <p class="valor__text">Ingeniería, instalación, puesta en marcha y mantenimiento. Un equipo que acompaña desde el cálculo hasta la puesta en marcha y posterior mantenimiento.</p>
-        </article>
+        <a class="valor__item" href="servicios.html#proyecto" style="background-image:url('img/servicios-proyecto.jpg')">
+          <h3 class="valor__title">Proyecto</h3>
+          <p class="valor__text">Ingeniería, cálculo y documentación técnica del sistema de climatización.</p>
+        </a>
+        <a class="valor__item" href="servicios.html#mantenimiento" style="background-image:url('img/servicios-service.png')">
+          <h3 class="valor__title">Service y mantenimiento</h3>
+          <p class="valor__text">Preventivo, correctivo y monitoreo para que nada se pare.</p>
+        </a>
+        <a class="valor__item" href="servicios.html#direccion-obra" style="background-image:url('img/servicios-direccion-obra.png')">
+          <h3 class="valor__title">Dirección de obra</h3>
+          <p class="valor__text">Supervisión y dirección técnica en sitio, hasta la puesta en marcha.</p>
+        </a>
+        <a class="valor__item" href="servicios.html#auditoria" style="background-image:url('img/servicios-auditoria.png')">
+          <h3 class="valor__title">Auditoría y revisión</h3>
+          <p class="valor__text">Detectamos fallas de diseño, riesgos normativos y mejoras en proyectos existentes.</p>
+        </a>
       </div>
-    </div>
-  </section>
-
-  <!-- ===== OBRAS (slider grande) ===== -->
-  <section class="obras" id="obras">
-    <div class="obras__inner">
-      <div class="obras__gallery" id="gallery">
-        <div class="obras__slider" id="obrasSlider">
-          <div class="obras__slide">
-            <img src="img/proyectos/usal_cba.webp" alt="Universidad del Salvador - Sede Córdoba" class="obras__img placeholder-img" />
-            <span class="obras__img-label label-sm">Universidad del Salvador</span>
-          </div>
-        </div>
-        <div class="obras__slider-controls">
-          <button class="slider-btn" id="prevSlide" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="15 18 9 12 15 6"/></svg></button>
-          <button class="slider-btn" id="nextSlide" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="9 18 15 12 9 6"/></svg></button>
-        </div>
-      </div>
-      <div class="obras__content">
-        <span class="label-sm">Trayectoria</span>
-        <h2 class="obras__title">40 años de obra ejecutada</h2>
-        <p class="obras__desc">Una selección de proyectos realizados en Argentina: el respaldo técnico que hoy traemos a Paraguay.</p>
-        <a href="#casos" class="btn btn--dark">VER PROYECTOS</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SEGMENTOS ===== -->
-  <section class="section" id="segmentos">
-    <div class="wrap">
-      <div class="section__head">
-        <span class="label-sm">Sectores</span>
-        <h2 class="section__title">Dónde marcamos la diferencia</h2>
-        <p class="section__lead">Cuanto más exigente es el proyecto, más pesa la ingeniería correcta.</p>
-      </div>
-      <div class="segmentos">
-        <div class="segmento">
-          <div class="segmento__media"><span class="imgph__mini"><img src="img/sectores-salud.png" alt="quirofano"></span></div>
-          <div class="segmento__body">
-            <span class="label-sm segmento__tag">Salud</span>
-            <h3>Ambientes críticos</h3>
-            <p>Quirófanos, áreas limpias y laboratorios. Presión diferencial, filtrado HEPA y continuidad de servicio bajo norma sanitaria.</p>
-          </div>
-        </div>
-        <div class="segmento">
-          <div class="segmento__media"><img src="img/sectores-datacenter.png" alt="Data center" class="segmento__img"></div>
-          <div class="segmento__body">
-            <span class="label-sm segmento__tag">Data centers</span>
-            <h3>Refrigeración de precisión</h3>
-            <p>Control de temperatura y humedad, redundancia y operación 24/7 sin ventanas de falla.</p>
-          </div>
-        </div>
-        <div class="segmento">
-          <div class="segmento__media"><span class="imgph__mini"><img src="img/sectores-corporativo.png" alt="torre corporativa"></span></div>
-          <div class="segmento__body">
-            <span class="label-sm segmento__tag">Corporativo</span>
-            <h3>Torres y oficinas</h3>
-            <p>Sistemas VRF/VRV, agua helada y BMS para edificios de oficinas de alto estándar.</p>
-          </div>
-        </div>
-        <div class="segmento">
-          <div class="segmento__media"><span class="imgph__mini"><img src="img/sectores-industrial.png" alt="planta industrial"></span></div>
-          <div class="segmento__body">
-            <span class="label-sm segmento__tag">Industria</span>
-            <h3>Climatización de proceso</h3>
-            <p>Ventilación y sistemas a medida para plantas e instalaciones industriales.</p>
-          </div>
-        </div>
-        <div class="segmento">
-          <div class="segmento__media"><span class="imgph__mini"><img src="img/sectores-retail.png" alt="local gastronómico"></span></div>
-          <div class="segmento__body">
-            <span class="label-sm segmento__tag">Retail y gastronomía</span>
-            <h3>Confort y extracción</h3>
-            <p>Climatización, extracción y ventilación mecánica conforme a normativa.</p>
-          </div>
-        </div>
-        <div class="segmento">
-          <div class="segmento__media"><span class="imgph__mini"><img src="img/sectores-mantenimiento.png" alt="técnico en mantenimiento"></span></div>
-          <div class="segmento__body">
-            <span class="label-sm segmento__tag">Mantenimiento</span>
-            <h3>Ciclo de vida</h3>
-            <p>Preventivo, correctivo, re-ingeniería y monitoreo de sistemas existentes.</p>
-          </div>
-        </div>
-        <div class="segmento">
-          <div class="segmento__media"><span class="imgph__mini"><img src="img/sectores-auditoria.png" alt="planos / auditoría técnica"></span></div>
-          <div class="segmento__body">
-            <span class="label-sm segmento__tag">Consultoría</span>
-            <h3>Revisión de proyectos</h3>
-            <p>Auditoría de proyectos e instalaciones existentes: detectamos fallas de diseño, riesgos normativos y oportunidades de optimización.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== BAND: COMPROMISO LOCAL ===== -->
-  <section class="section band">
-    <div class="wrap">
-      <div class="section__head">
-        <span class="flag-badge">Una empresa argentina que llegó para quedarse</span>
-        <h2 class="section__title">Llegamos para potenciar las obras que están transformando el país.</h2>
-        <p class="section__lead">Trabajamos codo a codo con las constructoras y desarrolladores que ya conocen el terreno, aportando la ingeniería de climatización que los proyectos más exigentes necesitan. Un aliado técnico que suma capacidad a tu obra.</p>
-      </div>
-      <a href="nosotros.html" class="btn btn--accent">CONOCÉ NUESTRA HISTORIA</a>
-    </div>
-  </section>
-
-  <!-- ===== STATS ===== -->
-  <section class="stats">
-    <div class="stats__inner">
-      <div class="stats__item">
-        <span class="stats__number">+40</span>
-        <span class="stats__label label-sm">AÑOS</span>
-        <span class="stats__desc">De trayectoria<br />ininterrumpida</span>
-      </div>
-      <div class="stats__item">
-        <span class="stats__number">+120</span>
-        <span class="stats__label label-sm">PROYECTOS</span>
-        <span class="stats__desc">Ejecutados con éxito</span>
-      </div>
-      <div class="stats__item">
-        <span class="stats__number">+75</span>
-        <span class="stats__label label-sm">MILLONES</span>
-        <span class="stats__desc">De BTUs instalados</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FEATURE (imagen a sangre) ===== -->
-  <section class="feature" style="background-image:url('img/rooftop.png')">
-    <div class="feature__overlay"></div>
-    <div class="wrap feature__inner">
-      <h2 class="feature__title">La ingeniería que no se ve, pero sostiene todo.</h2>
     </div>
   </section>
 
@@ -216,9 +88,8 @@
   <section class="section section--alt" id="casos">
     <div class="wrap">
       <div class="section__head">
-        <span class="label-sm">Proyectos</span>
-        <h2 class="section__title">Obras que respaldan lo que decimos</h2>
-        <p class="section__lead">Una muestra de nuestra trayectoria en los entornos más exigentes.</p>
+        <h2 class="section__title">Proyectos Ejecutados</h2>
+        <p class="section__lead">Una muestra de nuestra trayectoria en los entornos más exigentes</p>
       </div>
       <div class="casos-carousel">
         <div class="casos-track" id="casosTrack">
@@ -230,7 +101,7 @@
               <span class="label-sm caso__tag">Sector Salud</span>
               <h3 class="caso__title">Hospital Materno Infantil</h3>
               <p class="caso__desc">Climatización de quirófanos y áreas limpias bajo norma sanitaria, con control de presión diferencial sala por sala.</p>
-              <button type="button" class="caso__btn js-ficha" data-ficha="hospital">Ficha técnica</button>
+              <div class="caso__actions"><button type="button" class="caso__btn js-ficha" data-ficha="hospital">Ficha técnica</button><a class="caso__dl" href="fichas/hospital-materno-infantil.pdf" download title="Descargar ficha (PDF)" aria-label="Descargar ficha en PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg></a></div>
             </div>
           </article>
           <article class="caso">
@@ -241,7 +112,7 @@
               <span class="label-sm caso__tag">Data Center</span>
               <h3 class="caso__title">Centro de Monitoreo</h3>
               <p class="caso__desc">Refrigeración de precisión con control de temperatura y humedad para sala de servidores y monitoreo ininterrumpido.</p>
-              <button type="button" class="caso__btn js-ficha" data-ficha="monitoreo">Ficha técnica</button>
+              <div class="caso__actions"><button type="button" class="caso__btn js-ficha" data-ficha="monitoreo">Ficha técnica</button><a class="caso__dl" href="fichas/centro-monitoreo.pdf" download title="Descargar ficha (PDF)" aria-label="Descargar ficha en PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg></a></div>
             </div>
           </article>
           <article class="caso">
@@ -251,8 +122,8 @@
             <div class="caso__body">
               <span class="label-sm caso__tag">Institucional - Patrimonial</span>
               <h3 class="caso__title">Centro Cultural de Paraguay</h3>
-              <p class="caso__desc">Ya trabajamos para el Estado paraguayo: climatización moderna en un edificio patrimonial, respetando su arquitectura.</p>
-              <button type="button" class="caso__btn js-ficha" data-ficha="cultural">Ficha técnica</button>
+              <p class="caso__desc">Trabajamos para el Estado paraguayo: climatización de su Centro Cultural en Buenos Aires, un edificio patrimonial, respetando su arquitectura.</p>
+              <div class="caso__actions"><button type="button" class="caso__btn js-ficha" data-ficha="cultural">Ficha técnica</button><a class="caso__dl" href="fichas/centro-cultural-paraguay.pdf" download title="Descargar ficha (PDF)" aria-label="Descargar ficha en PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg></a></div>
             </div>
           </article>
           <article class="caso">
@@ -263,7 +134,7 @@
               <span class="label-sm caso__tag">Educación</span>
               <h3 class="caso__title">USAL — Facultad de Medicina</h3>
               <p class="caso__desc">Confort y control ambiental crítico en un mismo edificio en altura: aulas, laboratorios y un bioterio con control dedicado.</p>
-              <button type="button" class="caso__btn js-ficha" data-ficha="usal">Ficha técnica</button>
+              <div class="caso__actions"><button type="button" class="caso__btn js-ficha" data-ficha="usal">Ficha técnica</button><a class="caso__dl" href="fichas/usal-medicina.pdf" download title="Descargar ficha (PDF)" aria-label="Descargar ficha en PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg></a></div>
             </div>
           </article>
           <article class="caso">
@@ -274,7 +145,7 @@
               <span class="label-sm caso__tag">Uso mixto</span>
               <h3 class="caso__title">Parque de la Costa</h3>
               <p class="caso__desc">Un mismo predio con demandas y horarios dispares: gastronomía, comercios, espectáculos y oficinas, resueltos sector por sector.</p>
-              <button type="button" class="caso__btn js-ficha" data-ficha="parque">Ficha técnica</button>
+              <div class="caso__actions"><button type="button" class="caso__btn js-ficha" data-ficha="parque">Ficha técnica</button><a class="caso__dl" href="fichas/parque-de-la-costa.pdf" download title="Descargar ficha (PDF)" aria-label="Descargar ficha en PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg></a></div>
             </div>
           </article>
         </div>
@@ -287,22 +158,10 @@
     </div>
   </section>
 
-  <!-- ===== PARA CONSTRUCTORAS (teaser) ===== -->
-  <section class="section">
-    <div class="wrap">
-      <div class="solucion">
-        <span class="label-sm" style="color:var(--accent-cyan)">Para constructoras y desarrolladores</span>
-        <h3>Un aliado técnico, no un proveedor más.</h3>
-        <p>Ustedes conservan el cliente, el contrato y la relación comercial. Nosotros aportamos la ingeniería, la dirección técnica y la puesta en marcha del sistema de climatización. Un modelo pensado para que nos integremos a su obra solo cuando lo necesitan.</p>
-        <p style="margin-top:var(--sp-lg)"><a href="servicio.html" class="btn btn--accent">CÓMO TRABAJAMOS JUNTOS</a></p>
-      </div>
-    </div>
-  </section>
-
   <!-- ===== CLIENTES (prueba AR) ===== -->
   <section class="clientes">
     <div class="clientes__inner">
-      <p class="clientes__tagline">Empresas que confiaron en nosotros en Argentina</p>
+      <p class="clientes__tagline">Empresas que confiaron en nosotros</p>
       <div class="clientes__carousel">
         <button class="clientes__arrow clientes__arrow--left" id="clientesPrev" aria-label="Anterior">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
@@ -333,6 +192,108 @@
     </div>
   </section>
 
+  <!-- ===== SEGMENTOS ===== -->
+  <section class="section" id="segmentos">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 class="section__title">Segmentos de Negocio</h2>
+      </div>
+      <div class="segmentos">
+        <div class="segmento">
+          <div class="segmento__media"><img src="img/sectores-salud.png" alt="quirófano" class="segmento__img"></div>
+          <div class="segmento__body">
+            <h3>Salud</h3>
+            <p>Ambientes críticos como quirófanos, áreas limpias y laboratorios: presión diferencial, filtrado HEPA y continuidad de servicio bajo norma sanitaria.</p>
+          </div>
+        </div>
+        <div class="segmento">
+          <div class="segmento__media"><img src="img/sectores-datacenter.png" alt="data center" class="segmento__img"></div>
+          <div class="segmento__body">
+            <h3>Data centers</h3>
+            <p>Refrigeración de precisión: control de temperatura y humedad, redundancia y operación 24/7 sin ventanas de falla.</p>
+          </div>
+        </div>
+        <div class="segmento">
+          <div class="segmento__media"><img src="img/sectores-corporativo.png" alt="torre corporativa" class="segmento__img"></div>
+          <div class="segmento__body">
+            <h3>Corporativo</h3>
+            <p>Torres y oficinas de alto estándar con sistemas VRF/VRV, agua helada y BMS integrados.</p>
+          </div>
+        </div>
+        <div class="segmento">
+          <div class="segmento__media"><img src="img/sectores-industrial.png" alt="planta industrial" class="segmento__img"></div>
+          <div class="segmento__body">
+            <h3>Industria</h3>
+            <p>Climatización de proceso: ventilación y sistemas a medida para plantas e instalaciones industriales.</p>
+          </div>
+        </div>
+        <div class="segmento">
+          <div class="segmento__media"><img src="img/sectores-shopping.jpg" alt="centro comercial" class="segmento__img"></div>
+          <div class="segmento__body">
+            <h3>Tiendas y Centros Comerciales</h3>
+            <p>Grandes superficies como shoppings, tiendas, cines y salas de espectáculos. Confort estable en espacios de alta ocupación y renovación de aire para el público.</p>
+          </div>
+        </div>
+        <div class="segmento">
+          <div class="segmento__media"><img src="img/sectores-supermercado.png" alt="supermercado" class="segmento__img"></div>
+          <div class="segmento__body">
+            <h3>Supermercados y Farmacias</h3>
+            <p>Confort y cadena de frío: temperatura controlada en el salón y donde el producto lo exige (zonas de frío, depósitos y medicamentos que no pueden salirse de rango).</p>
+          </div>
+        </div>
+        <div class="segmento">
+          <div class="segmento__media"><img src="img/sectores-gastronomia.png" alt="salón gastronómico" class="segmento__img"></div>
+          <div class="segmento__body">
+            <h3>Gastronomía</h3>
+            <p>Cocinas y salones: extracción de humos, reposición de aire y confort en el salón, conforme a normativa.</p>
+          </div>
+        </div>
+        <div class="segmento">
+          <div class="segmento__media"><img src="img/sectores-residencial.jpg" alt="vivienda residencial" class="segmento__img"></div>
+          <div class="segmento__body">
+            <h3>Residencial</h3>
+            <p>Climatización silenciosa y eficiente para viviendas, departamentos y edificios residenciales.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== CTA: AUDITORÍA GRATUITA (imán de leads) ===== -->
+  <section class="section cta-audit" id="auditoria-cta">
+    <div class="wrap cta-audit__grid">
+      <div class="cta-audit__intro">
+        <h2>¿Tenés un proyecto o una instalación en marcha?</h2>
+        <p class="cta-audit__lead">Despejá dudas con un ingeniero antes de invertir. Sin cargo ni compromiso.</p>
+        <a href="#contacto" class="btn btn--accent">Pedir auditoría gratuita</a>
+      </div>
+      <ol class="cta-audit__steps">
+        <li class="cta-audit__step">
+          <span class="cta-audit__num">1</span>
+          <div class="cta-audit__step-body">
+            <h3>Nos contás</h3>
+            <p>Tu proyecto, el estado de tus equipos o qué necesitás comprar.</p>
+          </div>
+        </li>
+        <li class="cta-audit__step">
+          <span class="cta-audit__num">2</span>
+          <div class="cta-audit__step-body">
+            <h3>Lo revisamos</h3>
+            <p>Un ingeniero audita la instalación y analiza tus dudas</p>
+          </div>
+        </li>
+        <li class="cta-audit__step">
+          <span class="cta-audit__num">3</span>
+          <div class="cta-audit__step-body">
+            <h3>Te damos un diagnóstico</h3>
+            <p>Qué equipos conviene, riesgos a cubrir y oportunidades de mejora.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
   <!-- ===== CONTACTO ===== -->
   <section class="contacto" id="contacto">
     <div class="contacto__inner">
@@ -351,31 +312,61 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             <div>
               <strong>EMAIL</strong>
-              <p><a href="mailto:electroterm@electroterm.com.ar">electroterm@electroterm.com.ar</a></p>
+              <p><a href="mailto:contacto@electroterm.com.py">contacto@electroterm.com.py</a></p>
             </div>
           </div>
         </div>
         <div class="contacto__form-wrap">
-          <form class="contacto__form" id="contactForm">
+          <div class="contacto__tabs" role="tablist">
+            <button class="contacto__tab is-active" data-tab="empresa" type="button">Empresa</button>
+            <button class="contacto__tab" data-tab="particular" type="button">Particular</button>
+          </div>
+
+          <!-- EMPRESA -->
+          <form class="contacto__form js-contact-form" id="contactForm" data-tipo="Empresa" data-pane="empresa">
+            <input type="checkbox" name="botcheck" class="is-hidden" style="display:none !important" tabindex="-1" autocomplete="off" aria-hidden="true" />
             <div class="form-row">
               <input type="text" name="nombre" placeholder="Nombre" class="form-input" required />
               <input type="text" name="empresa" placeholder="Empresa" class="form-input" />
             </div>
             <div class="form-row">
               <input type="email" name="email" placeholder="Email" class="form-input" required />
-              <input type="tel" name="telefono" placeholder="Teléfono" class="form-input" />
+              <input type="tel" name="telefono" placeholder="Teléfono / WhatsApp" class="form-input" />
             </div>
+            <input type="text" name="rol" placeholder="Tu rol (ej. jefe de obra, arquitecto, gerente)" class="form-input" />
             <select name="proyecto" class="form-input form-select" required>
-              <option value="" disabled selected>Tipo de proyecto...</option>
-              <option>Salud / Sistema crítico (hospital, laboratorio)</option>
-              <option>Data center / Sala técnica</option>
-              <option>Corporativo / Oficinas</option>
-              <option>Industrial / Proceso</option>
-              <option>Retail / Gastronomía</option>
-              <option>Mantenimiento / Service</option>
-              <option>Alianza con constructora / desarrolladora</option>
+              <option value="" disabled selected>¿Qué necesitás?</option>
+              <option>Auditoría técnica gratuita</option>
+              <option>Proyecto nuevo / Cotización</option>
+              <option>Service / Mantenimiento</option>
+              <option>Asesoramiento en selección de equipos</option>
+              <option>Alianza (constructora / desarrolladora)</option>
+              <option>Otro</option>
             </select>
             <textarea name="mensaje" placeholder="Contanos en qué estás trabajando..." class="form-input form-textarea" rows="4"></textarea>
+            <button type="submit" class="btn btn--accent btn--full">Enviar consulta</button>
+          </form>
+
+          <!-- PARTICULAR -->
+          <form class="contacto__form js-contact-form is-hidden" id="contactFormParticular" data-tipo="Particular" data-pane="particular">
+            <input type="checkbox" name="botcheck" class="is-hidden" style="display:none !important" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <a href="https://wa.me/595985368085?text=Hola%20ElectroTerm%2C%20quiero%20hacer%20una%20consulta%20para%20mi%20casa." target="_blank" rel="noopener" class="btn btn--full contacto__wa">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.84-1.96-.94-.26-.1-.45-.14-.64.14-.19.28-.74.94-.9 1.13-.17.19-.33.21-.61.07-.28-.14-1.18-.44-2.25-1.39-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.64-1.54-.88-2.11-.23-.55-.46-.48-.64-.49l-.54-.01c-.19 0-.49.07-.75.35-.26.28-.98.96-.98 2.34s1.01 2.72 1.15 2.9c.14.19 1.98 3.02 4.79 4.24.67.29 1.19.46 1.6.59.67.21 1.28.18 1.76.11.54-.08 1.65-.67 1.89-1.33.23-.65.23-1.21.16-1.33-.07-.12-.26-.19-.54-.33z"/><path d="M12 2.04c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.34 4.96L2 22l5.17-1.35A9.9 9.9 0 0 0 12 21.96c5.5 0 9.96-4.46 9.96-9.96S17.5 2.04 12 2.04zm0 18.2c-1.57 0-3.1-.42-4.44-1.22l-.32-.19-3.07.8.82-2.99-.21-.33a8.23 8.23 0 0 1-1.26-4.35c0-4.56 3.71-8.27 8.28-8.27 4.56 0 8.27 3.71 8.27 8.27 0 4.57-3.71 8.28-8.27 8.28z"/></svg>
+              Escribinos por WhatsApp
+            </a>
+            <p class="contacto__or">o dejanos tus datos y te contactamos</p>
+            <div class="form-row">
+              <input type="text" name="nombre" placeholder="Nombre" class="form-input" required />
+              <input type="tel" name="telefono" placeholder="Teléfono / WhatsApp" class="form-input" required />
+            </div>
+            <select name="proyecto" class="form-input form-select" required>
+              <option value="" disabled selected>¿Qué necesitás?</option>
+              <option>Instalación en casa / Cotización</option>
+              <option>Service / Mantenimiento de mi equipo</option>
+              <option>Asesoramiento (qué equipo comprar)</option>
+              <option>Otro</option>
+            </select>
+            <textarea name="mensaje" placeholder="Contanos qué necesitás (opcional)" class="form-input form-textarea" rows="3"></textarea>
             <button type="submit" class="btn btn--accent btn--full">Enviar consulta</button>
           </form>
         </div>
@@ -394,23 +385,27 @@
       </div>
       <div class="footer__col">
         <h4 class="label-sm">SERVICIOS</h4>
-        <span>Ingeniería</span>
-        <span>Instalación y Puesta en Marcha</span>
-        <span>Mantenimiento</span>
-        <span>Distribución</span>
+        <span>Ingeniería y proyecto</span>
+        <span>Dirección técnica y supervisión</span>
+        <span>Mantenimiento y Services</span>
+        <span>Asesoría de equipos</span>
       </div>
       <div class="footer__col">
         <h4 class="label-sm">SECTORES</h4>
         <span>Salud</span>
         <span>Data centers</span>
-        <span>Industria</span>
-        <span>Educación</span>
-        <span>Gobierno</span>
         <span>Corporativo</span>
+        <span>Industria</span>
+        <span>Tiendas y Centros Comerciales</span>
+        <span>Supermercados y farmacias</span>
+        <span>Gastronomía</span>
+        <span>Residencial</span>
       </div>
       <div class="footer__col">
-        <h4 class="label-sm">CONTACTO</h4>        <span>+595 985 368085</span>
-        <span>electroterm@electroterm.com.ar</span>      </div>
+        <h4 class="label-sm">CONTACTO</h4>
+        <span>+595 985 368085</span>
+        <span>contacto@electroterm.com.py</span>
+      </div>
     </div>
     <div class="footer__bottom">
       <span class="label-sm">2026 | ELECTROTERM®</span>

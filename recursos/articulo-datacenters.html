@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paraguay, energía y data centers de IA | ElectroTerm Paraguay</title>
+  <meta name="description" content="Iguazú AI City, el acuerdo con Taiwán y Dominion ponen a Paraguay en el mapa de la infraestructura digital. Qué hay de cierto, qué falta y el desafío técnico menos visible: la refrigeración.">
+  <link rel="shortcut icon" href="../img/icons/favicon.svg">
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/paraguay.css" />
+  <style>
+    .article__lead { font-size:1.22rem; line-height:1.5; color:var(--primary-dark); font-weight:500; margin-top:var(--sp-md); }
+    .dc-grid { display:grid; grid-template-columns:1fr; gap:var(--sp-md); margin:var(--sp-lg) 0; }
+    @media(min-width:760px){ .dc-grid{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
+    .dc-card { background:#fff; border:1px solid var(--neutral-warm); border-top:3px solid var(--accent-cyan);
+      border-radius:12px; padding:var(--sp-lg); display:flex; flex-direction:column; box-shadow:0 6px 24px rgba(26,61,92,0.05); }
+    .dc-card__tag { font-family:var(--font-mono); font-size:0.66rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--primary); }
+    .dc-card__loc { font-family:var(--font-display); font-weight:700; font-size:0.98rem; color:var(--primary-dark); margin:0.3rem 0 var(--sp-md); line-height:1.2; min-height:2.35rem; }
+    .dc-card__cur { display:block; font-family:var(--font-mono); font-size:0.78rem; font-weight:600; letter-spacing:0.1em; color:#5d6b76; }
+    .dc-card__num { display:block; font-family:var(--font-display); font-weight:800; font-size:2.15rem; letter-spacing:-0.02em; color:var(--accent-cyan); line-height:1.02; white-space:nowrap; margin-top:0.2rem; }
+    .dc-card__biglbl { font-family:var(--font-mono); font-size:0.62rem; letter-spacing:0.05em; text-transform:uppercase; color:#5d6b76; margin-top:0.4rem; }
+    .dc-card ul { list-style:none; margin:var(--sp-md) 0 0; padding:var(--sp-md) 0 0; border-top:1px solid var(--neutral-warm); display:flex; flex-direction:column; gap:0.5rem; }
+    .dc-card li { font-size:0.9rem; color:#3a4852; line-height:1.35; padding-left:1rem; position:relative; }
+    .dc-card li::before { content:"›"; position:absolute; left:0; color:var(--accent-cyan); font-weight:700; }
+    .dc-note { background:var(--neutral-light); border-left:3px solid var(--accent-orange); padding:var(--sp-md) var(--sp-lg);
+      border-radius:0 8px 8px 0; font-size:0.95rem; line-height:1.5; color:#45535d; margin:var(--sp-lg) 0; }
+    .article p.article__note { font-family:var(--font-mono); font-size:0.55rem; letter-spacing:0.02em; color:#9aa6ae;
+      margin-top:var(--sp-xl); line-height:1.8; }
+    .article__note a { color:#7f9aab; text-decoration:none; }
+    .article__note a:hover { color:var(--teal); text-decoration:underline; }
+    .art-photo figcaption a { color:var(--teal); text-decoration:none; }
+    .art-photo figcaption a:hover { text-decoration:underline; }
+
+    /* ── Accordion horizontal (proyectos) ── */
+    .dc-acc { display:flex; gap:10px; margin:var(--sp-lg) 0; align-items:stretch; }
+    .dc-panel { position:relative; flex:0 0 64px; min-width:0; overflow:hidden; border-radius:14px;
+      border:1px solid var(--neutral-warm); border-top:3px solid var(--accent-cyan); background:#fff; cursor:pointer;
+      transition:flex .45s cubic-bezier(.4,0,.2,1), background .3s; }
+    .dc-panel.is-open { flex:1 1 auto; cursor:default; }
+    .dc-panel:not(.is-open):hover { background:var(--neutral-light); }
+    .dc-panel__plus { position:absolute; bottom:16px; left:50%; transform:translateX(-50%); width:28px; height:28px;
+      border-radius:50%; background:#fff; border:1.5px solid var(--accent-cyan); color:var(--accent-cyan);
+      display:grid; place-items:center; font-family:var(--font-body); font-size:18px; font-weight:600; line-height:1; transition:background .2s, color .2s; }
+    .dc-panel:not(.is-open):hover .dc-panel__plus { background:var(--accent-cyan); color:#fff; }
+    .dc-panel.is-open .dc-panel__plus { display:none; }
+    @media(max-width:620px){ .dc-panel__plus { display:none !important; } }
+    .dc-panel__tab { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+    .dc-panel__tabname { writing-mode:vertical-rl; transform:rotate(180deg); font-family:var(--font-display); font-weight:700;
+      font-size:1rem; letter-spacing:0.02em; color:var(--primary-dark); white-space:nowrap; }
+    .dc-panel.is-open .dc-panel__tab { display:none; }
+    .dc-panel__full { display:none; padding:var(--sp-lg); min-width:380px; }
+    .dc-panel.is-open .dc-panel__full { display:block; }
+    .dc-panel__name { font-family:var(--font-display); font-weight:700; font-size:1.25rem; color:var(--primary-dark); margin:0.25rem 0 var(--sp-md); line-height:1.15; }
+    .dc-panel__fig { margin-bottom:var(--sp-md); }
+    .dc-panel__num { display:block; font-family:var(--font-display); font-weight:800; font-size:2.6rem; letter-spacing:-0.02em; color:var(--accent-cyan); line-height:1; margin:0.12rem 0 0.3rem; }
+    .dc-panel__specs { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:0.5rem; }
+    .dc-panel__specs li { font-size:0.95rem; color:#3a4852; line-height:1.4; padding-left:1rem; position:relative; }
+    .dc-panel__specs li::before { content:"›"; position:absolute; left:0; color:var(--accent-cyan); font-weight:700; }
+    @media(max-width:620px){
+      .dc-acc { flex-direction:column; height:auto; }
+      .dc-panel { flex:auto; }
+      .dc-panel__tab { display:none !important; }
+      .dc-panel__full { display:block !important; min-width:0; height:auto; }
+    }
+  </style>
+</head>
+<body class="nav-solid">
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="../index.html" class="navbar__logo"><img src="../img/logo_primary.svg" alt="ElectroTerm Paraguay" /></a>
+      <nav class="navbar__nav" id="desktopNav">
+        <a href="../nosotros.html" class="navbar__link">Nosotros</a>
+        <a href="../servicios.html" class="navbar__link">Servicios</a>
+        <a href="../servicios.html#mantenimiento" class="navbar__link">Mantenimiento</a>
+        <a href="../index.html#casos" class="navbar__link">Experiencia</a>
+        <a href="../recursos.html" class="navbar__link navbar__link--active">Recursos</a>
+        <a href="../index.html#contacto" class="navbar__link navbar__link--cta">Contacto</a>
+      </nav>
+      <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="navbar__mobile" id="mobileNav" aria-hidden="true">
+      <a href="../nosotros.html" class="navbar__mobile-link">Nosotros</a>
+      <a href="../servicios.html" class="navbar__mobile-link">Servicios</a>
+      <a href="../servicios.html#mantenimiento" class="navbar__mobile-link">Mantenimiento</a>
+      <a href="../index.html#casos" class="navbar__mobile-link">Experiencia</a>
+      <a href="../recursos.html" class="navbar__mobile-link">Recursos</a>
+      <a href="../index.html#contacto" class="navbar__mobile-link">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- ===== ARTÍCULO ===== -->
+  <section class="section" style="padding-top:calc(var(--nav-h) + var(--sp-2xl))">
+    <div class="wrap">
+      <article class="article">
+        <span class="article__meta">Data centers · Infraestructura · Lectura 5 min</span>
+        <h1>La energía de Paraguay quiere mover la IA del mundo</h1>
+        <p class="article__lead">Tres proyectos de centros de datos prometen miles de millones apoyados en la hidroelectricidad del país. Detrás de cada anuncio hay un desafío técnico menos visible: cómo enfriar todo ese cómputo.</p>
+
+        <figure class="art-photo">
+          <img src="img/recursos-itaipu.jpg" alt="Vista aérea de la central hidroeléctrica Itaipú" />
+          <figcaption>Vista aérea de la central hidroeléctrica Itaipú.</figcaption>
+        </figure>
+
+        <p>Paraguay busca aprovechar su disponibilidad de energía hidroeléctrica para desarrollar una nueva actividad exportadora: procesar datos para inteligencia artificial. Durante 2026, iniciativas privadas y acuerdos de cooperación internacional apuntaron en esa dirección, con proyectos que proponen instalar infraestructura de cómputo y atender clientes fuera del país. La energía abundante y competitiva es la ventaja que casi todos señalan.</p>
+
+        <h2>Tres proyectos sobre la mesa</h2>
+        <p>Los anuncios de 2026 dibujan tres apuestas de escala y madurez muy distintas.</p>
+
+        <div class="dc-acc" id="dcAcc">
+          <div class="dc-panel is-open" tabindex="0" role="button" aria-expanded="true">
+            <div class="dc-panel__tab"><span class="dc-panel__tabname">Iguazú AI City</span><span class="dc-panel__plus" aria-hidden="true">+</span></div>
+            <div class="dc-panel__full">
+              <span class="dc-card__tag">Iguazú AI City · Araico</span>
+              <h3 class="dc-panel__name">Colonia Yguazú, Alto Paraná</h3>
+              <div class="dc-panel__fig"><span class="dc-card__cur">USD</span><span class="dc-panel__num">11.300 M</span><span class="dc-card__biglbl">anunciados en 3 etapas</span></div>
+              <ul class="dc-panel__specs">
+                <li>Etapa 1: USD 300 M · 6 MW</li>
+                <li>Infraestructura prevista para diciembre 2026</li>
+                <li>Exportación de cómputo desde marzo 2027</li>
+                <li>Demanda total proyectada: ~280 MW</li>
+              </ul>
+            </div>
+          </div>
+          <div class="dc-panel" tabindex="0" role="button" aria-expanded="false">
+            <div class="dc-panel__tab"><span class="dc-panel__tabname">IA Soberana</span><span class="dc-panel__plus" aria-hidden="true">+</span></div>
+            <div class="dc-panel__full">
+              <span class="dc-card__tag">IA Soberana · Paraguay + Taiwán</span>
+              <h3 class="dc-panel__name">Acuerdo con Taiwán</h3>
+              <div class="dc-panel__fig"><span class="dc-card__cur">USD</span><span class="dc-panel__num">300 M</span><span class="dc-card__biglbl">fase 1 · ~10 MW</span></div>
+              <ul class="dc-panel__specs">
+                <li>Energía paraguaya + experiencia tecnológica taiwanesa</li>
+                <li>Etapas posteriores: entidad binacional</li>
+                <li>Participación equitativa entre ambos países</li>
+              </ul>
+            </div>
+          </div>
+          <div class="dc-panel" tabindex="0" role="button" aria-expanded="false">
+            <div class="dc-panel__tab"><span class="dc-panel__tabname">Dominion AI</span><span class="dc-panel__plus" aria-hidden="true">+</span></div>
+            <div class="dc-panel__full">
+              <span class="dc-card__tag">Dominion AI · Underground</span>
+              <h3 class="dc-panel__name">Centros subterráneos</h3>
+              <div class="dc-panel__fig"><span class="dc-card__cur">USD</span><span class="dc-panel__num">5 M</span><span class="dc-card__biglbl">inicial · hasta USD 250 M</span></div>
+              <ul class="dc-panel__specs">
+                <li>Construcción bajo tierra: mejor manejo térmico y seguridad</li>
+                <li>Procesadores gráficos y crecimiento modular</li>
+                <li>Entre 20 y 60 empleos calificados en operación</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="dc-note">Las cifras corresponden a lo anunciado por cada promotor y no deben leerse como capital ya desembolsado. Incluso difieren entre sí: para Iguazú AI City, ABC Color informó USD 12.000 millones donde Última Hora citó USD 11.300 millones.</div>
+
+        <h2>La energía, el nudo de todo</h2>
+        <p>El abastecimiento eléctrico es el punto decisivo. A fines de septiembre, Araico afirmó que la firma del contrato con la Administración Nacional de Electricidad (ANDE) era inminente, con una tarifa inicial de USD 45 por megavatio hora y actualizaciones anuales. Sin embargo, esa declaración describía una negociación en curso, no un contrato ya firmado.</p>
+
+        <figure class="art-photo">
+          <img src="img/recursos-datacenter-racks.jpg" alt="Racks de servidores en un centro de datos" />
+        </figure>
+
+        <h2>El desafío que casi no se nombra: el calor</h2>
+        <p>Hay una ley física que ningún anuncio menciona: casi toda la electricidad que consume un servidor termina convertida en calor. Un data center de IA de 280 MW no solo necesita esa potencia para funcionar; tiene que disipar una cantidad equivalente de calor, de forma continua y sin margen de falla. Es por eso que en estos proyectos la refrigeración de precisión (control fino de temperatura y humedad, redundancia, operación 24/7) pesa tanto como el contrato de energía: es lo que mantiene los servidores vivos. No es casualidad que Dominion proponga construir bajo tierra, buscando un manejo térmico más estable. </p>
+
+        <h2>Cómo medir si esto avanza de verdad</h2>
+        <p>Los anuncios comparten una aspiración legítima: usar la electricidad disponible para producir servicios digitales de mayor valor. Pero el avance real se medirá en hitos concretos: contratos de suministro firmados, infraestructura terminada, equipos instalados y capacidad de cómputo efectivamente comercializada. Por ahora, el panorama reúne obras reportadas por sus promotores, acuerdos de cooperación y planes de expansión cuya ejecución habrá que seguir mes a mes.</p>
+
+        <p class="article__note">10 de octubre de 2026<br>Fuentes: <a href="https://mitic.gov.py/alianza-con-taiwan-abre-camino-al-desarrollo-de-la-ia-en-paraguay/" target="_blank" rel="noopener">MITIC</a> · <a href="https://www.abc.com.py/negocios/2026/09/29/us-12000-millones-la-mayor-inversion-privada-de-la-historia-del-paraguay-ya-estaria-en-marcha/?outputType=amp" target="_blank" rel="noopener">ABC Color</a> · <a href="https://www.ultimahora.com/iguazu-ai-city-invertiran-usd-11-300-millones-en-megacentro-de-ia-en-paraguay?_amp=true" target="_blank" rel="noopener">Última Hora</a> · <a href="https://www.lanacion.com.py/negocios_edicion_impresa/2026/04/26/el-paraguay-proyecta-hub-regional-de-ia-con-data-centers-subterraneos/?outputType=amp" target="_blank" rel="noopener">La Nación</a></p>
+
+        <div class="article__cta">
+          <p style="margin:0 0 var(--sp-md)"><strong>¿Tu proyecto incluye una sala técnica o un data center?</strong> La refrigeración de precisión es nuestro terreno. Conversemos desde el diseño.</p>
+          <a href="../index.html#contacto" class="btn btn--primary">CONVERSEMOS</a>
+          <a href="../recursos.html" class="btn btn--secondary">VER MÁS RECURSOS</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="../index.html" class="footer__logo"><img src="../img/logo_accent_cyan.svg" alt="ElectroTerm" /></a>
+        <p>Empresa argentina con más de 40 años diseñando sistemas de climatización de alta complejidad para hospitales, data centers, edificios e industrias. Hoy en Paraguay.</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="label-sm">SERVICIOS</h4>
+        <span>Ingeniería</span>
+        <span>Instalación y Puesta en Marcha</span>
+        <span>Mantenimiento</span>
+        <span>Distribución</span>
+      </div>
+      <div class="footer__col">
+        <h4 class="label-sm">SECTORES</h4>
+        <span>Salud</span>
+        <span>Data centers</span>
+        <span>Corporativo</span>
+        <span>Industria</span>
+        <span>Tiendas y Centros Comerciales</span>
+        <span>Supermercados y farmacias</span>
+        <span>Gastronomía</span>
+        <span>Residencial</span>
+      </div>
+      <div class="footer__col">
+        <h4 class="label-sm">CONTACTO</h4>        <span>+595 985 368085</span>
+        <span>contacto@electroterm.com.py</span>      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="label-sm">2026 | ELECTROTERM®</span>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    (function(){
+      const acc = document.getElementById('dcAcc');
+      if(!acc) return;
+      const panels = Array.from(acc.querySelectorAll('.dc-panel'));
+      function open(p){ panels.forEach(x=>{ const on = x===p; x.classList.toggle('is-open', on); x.setAttribute('aria-expanded', on); }); }
+      panels.forEach(p=>{
+        p.addEventListener('click', ()=>open(p));
+        p.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(p); } });
+      });
+    })();
+  </script>
+</body>
+</html>

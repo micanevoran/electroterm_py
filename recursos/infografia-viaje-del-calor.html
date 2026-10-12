@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>El viaje del calor | ElectroTerm</title>
+<meta name="description" content="Infografía interactiva: cómo un equipo de aire acondicionado mueve el calor. El ciclo de refrigeración explicado paso a paso." />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Familjen+Grotesk:wght@400;500;600&family=Azeret+Mono:wght@400;500;600&display=swap');
+  :root{
+    --primary:#2B5F8D; --primary-dark:#1A3D5C; --teal:#3B8A9C;
+    --cyan:#00B4D8; --orange:#D87941;
+    --light:#F5F3F0; --warm:#E8E4DF; --ink:#223542; --mut:#5d6b76;
+    --cool-bg:#EAF2F7; --hot-bg:#FBF0E8;
+    --display:'Syne',sans-serif; --body:'Familjen Grotesk',sans-serif; --mono:'Azeret Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{ background:#e4e9ee; font-family:var(--body); color:var(--ink); padding:26px 14px; }
+
+  .backbar{ width:100%; max-width:1100px; margin:0 auto 16px; }
+  .backlink{ display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; font-weight:600;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--primary); text-decoration:none;
+    padding:9px 16px; background:#fff; border:1px solid var(--warm); border-radius:999px; transition:background .2s,color .2s,border-color .2s; }
+  .backlink:hover{ background:var(--primary); color:#fff; border-color:var(--primary); }
+
+  .sheet{ width:100%; max-width:1100px; margin:0 auto; background:var(--light);
+    border-radius:22px; overflow:hidden; position:relative; box-shadow:0 30px 80px rgba(16,36,54,0.22); }
+  .sheet::before{ content:""; position:absolute; inset:0; pointer-events:none; z-index:0;
+    background-image:linear-gradient(rgba(43,95,141,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(43,95,141,0.045) 1px,transparent 1px);
+    background-size:42px 42px;
+    -webkit-mask-image:radial-gradient(ellipse at 50% 20%, #000 0%, transparent 80%);
+    mask-image:radial-gradient(ellipse at 50% 20%, #000 0%, transparent 80%); }
+  .pad{ position:relative; z-index:1; padding:44px 52px; }
+
+  .head{ display:flex; align-items:center; justify-content:space-between; }
+  .logo{ height:40px; width:auto; }
+  .head__tag{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:var(--primary); }
+
+  .hero{ margin-top:30px; }
+  .hero__spoiler{ display:inline-block; font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--orange); border:1px solid rgba(216,121,65,0.4); border-radius:999px; padding:5px 12px; margin-bottom:14px; }
+  .hero__title{ font-family:var(--display); font-weight:800; font-size:60px; line-height:0.98; letter-spacing:-0.03em; color:var(--primary-dark); margin-bottom:12px; }
+  .hero__sub{ font-size:21px; line-height:1.4; color:var(--ink); max-width:46ch; }
+  .hero__sub b{ color:var(--primary); font-weight:600; }
+
+  /* ── Explorador interactivo ── */
+  .hint{ font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--mut); margin:30px 0 14px; display:flex; align-items:center; gap:8px; }
+  .hint__pulse{ width:8px; height:8px; border-radius:50%; background:var(--cyan); animation:blink 1.4s ease-in-out infinite; }
+  @keyframes blink{ 0%,100%{opacity:1;} 50%{opacity:0.25;} }
+
+  .explore{ display:grid; grid-template-columns:1fr; gap:26px; }
+  @media(min-width:860px){ .explore{ grid-template-columns:1.02fr 0.98fr; align-items:center; } }
+
+  .diagram{ position:relative; width:100%; max-width:460px; margin:0 auto; aspect-ratio:1/1; }
+  .diagram__halves{ position:absolute; inset:6%; display:flex; border-radius:50%; overflow:hidden; border:1px dashed #b9c8d4; opacity:0.9; }
+  .diagram__half{ flex:1; } .diagram__half--cool{ background:var(--cool-bg); } .diagram__half--hot{ background:var(--hot-bg); }
+  .zone{ position:absolute; font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; z-index:4; }
+  .zone--in{ left:8%; top:3%; color:var(--primary); } .zone--out{ right:8%; top:3%; color:var(--orange); }
+  .diagram svg.loop{ position:absolute; inset:0; width:100%; height:100%; z-index:2; overflow:visible; }
+
+  .node{ position:absolute; transform:translate(-50%,-50%); z-index:3; background:none; border:0; cursor:pointer;
+    display:flex; flex-direction:column; align-items:center; gap:7px; padding:0; width:118px; font-family:inherit; }
+  .node--1{ left:14%; top:50%; } .node--2{ left:50%; top:14%; } .node--3{ left:86%; top:50%; } .node--4{ left:50%; top:86%; }
+  .node__dot{ width:76px; height:76px; border-radius:50%; background:#fff; display:grid; place-items:center;
+    box-shadow:0 8px 22px rgba(16,36,54,0.14); border:2px solid transparent; transition:all .25s ease; position:relative; }
+  .node__num{ font-family:var(--display); font-weight:800; font-size:26px; line-height:1; letter-spacing:-0.02em; }
+  .node__lbl{ font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--primary-dark); text-align:center; transition:color .2s; }
+  .node[data-c="cyan"] .node__num{ color:var(--cyan); }
+  .node[data-c="navy"] .node__num{ color:var(--primary); }
+  .node[data-c="orange"] .node__num{ color:var(--orange); }
+  .node[data-c="teal"] .node__num{ color:var(--teal); }
+  .node:hover .node__dot{ transform:translateY(-3px); box-shadow:0 14px 30px rgba(16,36,54,0.2); }
+  .node.is-active .node__dot{ transform:scale(1.12); }
+  .node[data-c="cyan"].is-active .node__dot{ border-color:var(--cyan); box-shadow:0 0 0 6px rgba(0,180,216,0.16); }
+  .node[data-c="navy"].is-active .node__dot{ border-color:var(--primary); box-shadow:0 0 0 6px rgba(43,95,141,0.16); }
+  .node[data-c="orange"].is-active .node__dot{ border-color:var(--orange); box-shadow:0 0 0 6px rgba(216,121,65,0.16); }
+  .node[data-c="teal"].is-active .node__dot{ border-color:var(--teal); box-shadow:0 0 0 6px rgba(59,138,156,0.16); }
+
+  /* Panel de detalle */
+  .panel{ background:#fff; border-radius:18px; padding:28px 30px; box-shadow:0 16px 40px rgba(16,36,54,0.1);
+    border-top:4px solid var(--cyan); min-height:360px; transition:border-color .3s; }
+  .panel__step{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--mut); }
+  .panel__name{ font-family:var(--display); font-weight:800; font-size:34px; letter-spacing:-0.02em; color:var(--primary-dark); line-height:1.05; margin:4px 0 2px; }
+  .panel__zone{ font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; }
+  .state{ display:flex; align-items:center; gap:10px; margin:18px 0; }
+  .state__p{ font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; padding:6px 12px; border-radius:999px; background:var(--light); color:var(--primary-dark); border:1px solid var(--warm); }
+  .state__arrow{ color:var(--mut); font-size:18px; }
+  .gauges{ display:flex; gap:26px; margin:16px 0 18px; }
+  .gauge__k{ font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--mut); margin-bottom:6px; }
+  .gauge__bars{ display:flex; gap:4px; }
+  .gauge__bars i{ width:26px; height:8px; border-radius:3px; background:var(--warm); display:block; }
+  .gauge__bars i.on{ background:var(--primary); }
+  .gauge--hot .gauge__bars i.on{ background:var(--orange); }
+  .panel__desc{ font-size:15.5px; line-height:1.55; color:#3a4852; }
+  .panel__analogy{ margin-top:16px; background:var(--cool-bg); border-radius:10px; padding:13px 15px; }
+  .panel__analogy .k{ font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--primary); display:block; margin-bottom:4px; }
+  .panel__analogy p{ font-size:14px; line-height:1.45; color:#3a4852; font-style:italic; }
+
+  .legend{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:22px; margin-top:28px;
+    font-family:var(--mono); font-size:11px; letter-spacing:0.07em; text-transform:uppercase; color:var(--mut); }
+  .legend span{ display:inline-flex; align-items:center; gap:8px; }
+  .dot{ width:12px; height:12px; border-radius:50%; } .dot--cool{ background:var(--cyan); } .dot--hot{ background:var(--orange); }
+
+  .insight{ margin-top:34px; background:var(--primary-dark); border-radius:16px; padding:28px 32px; position:relative; overflow:hidden; }
+  .insight::after{ content:""; position:absolute; right:-70px; top:-70px; width:220px; height:220px; border:2px solid rgba(0,180,216,0.22); border-radius:50%; }
+  .insight__k{ font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--cyan); position:relative; z-index:1; }
+  .insight__t{ font-family:var(--display); font-weight:700; font-size:24px; line-height:1.22; color:#fff; margin-top:10px; position:relative; z-index:1; max-width:46ch; }
+  .insight__t b{ color:var(--cyan); }
+  .insight__note{ position:relative; z-index:1; margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.14); font-size:15px; line-height:1.5; color:#cfe0ee; max-width:56ch; }
+  .insight__note b{ color:#fff; font-weight:600; }
+
+  .scale{ margin-top:30px; border-top:1px solid var(--warm); padding-top:24px; }
+  .scale__t{ font-family:var(--display); font-weight:700; font-size:24px; color:var(--primary-dark); letter-spacing:-0.01em; }
+  .scale__p{ font-size:16px; line-height:1.5; color:#45535d; margin-top:6px; max-width:64ch; }
+  .scale__cta{ display:inline-flex; align-items:center; gap:8px; margin-top:18px; font-family:var(--mono); font-size:12px; font-weight:600;
+    letter-spacing:0.08em; text-transform:uppercase; color:#fff; background:var(--cyan); padding:12px 20px; border-radius:8px; text-decoration:none; transition:background .2s; }
+  .scale__cta:hover{ background:var(--teal); }
+
+  .foot{ margin-top:32px; background:var(--primary-dark); position:relative; z-index:1; }
+  .foot__in{ padding:22px 52px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+  .foot__src{ font-family:var(--mono); font-size:10.5px; letter-spacing:0.04em; color:#9cb6ca; text-align:right; line-height:1.6; }
+  .foot__src b{ color:#cfe0ee; font-weight:600; }
+
+  .flow{ stroke-dasharray:9 15; animation:march 1.1s linear infinite; }
+  .flow--hot{ animation-delay:-0.3s; }
+  @keyframes march{ to{ stroke-dashoffset:-48; } }
+  @media (prefers-reduced-motion:reduce){ .flow,.puck{ animation:none; } }
+
+  @media(max-width:720px){
+    .pad{ padding:30px 20px; }
+    .hero__title{ font-size:38px; } .hero__sub{ font-size:17px; }
+    .panel{ padding:22px; min-height:0; } .panel__name{ font-size:28px; }
+    .foot__in{ padding:18px 20px; } .insight__t{ font-size:19px; } .scale__t{ font-size:19px; }
+  }
+</style>
+</head>
+<body>
+  <!-- símbolo logo reutilizable -->
+  <svg style="display:none" xmlns="http://www.w3.org/2000/svg"><symbol id="etlogo" viewBox="0 0 218 105">
+    <g fill="currentColor">
+      <path d="M20.03,60.48v2.24H2.71v-24.5h16.8v2.24H5.3v8.72h12.67v2.21H5.3v9.1h14.74Z"/>
+      <path d="M25.95,36.75h2.48v25.97h-2.48v-25.97Z"/>
+      <path d="M51.74,54.28h-15.4c.28,3.85,3.22,6.41,7.25,6.41,2.24,0,4.24-.8,5.64-2.42l1.4,1.61c-1.65,1.96-4.2,3.01-7.11,3.01-5.74,0-9.66-3.92-9.66-9.38s3.82-9.35,9-9.35,8.93,3.82,8.93,9.35c0,.21-.04.49-.04.77ZM36.34,52.43h13.06c-.31-3.61-2.94-6.13-6.54-6.13s-6.2,2.52-6.51,6.13Z"/>
+      <path d="M55.35,53.51c0-5.5,3.99-9.35,9.49-9.35,3.12,0,5.74,1.23,7.21,3.64l-1.85,1.26c-1.26-1.86-3.22-2.73-5.36-2.73-4.03,0-6.96,2.87-6.96,7.18s2.94,7.18,6.96,7.18c2.14,0,4.1-.84,5.36-2.7l1.85,1.26c-1.47,2.38-4.09,3.64-7.21,3.64-5.5,0-9.49-3.88-9.49-9.38Z"/>
+      <path d="M87.16,61.6c-.98.88-2.45,1.29-3.88,1.29-3.47,0-5.39-1.96-5.39-5.36v-11.13h-3.29v-2.1h3.29v-4.03h2.49v4.03h5.6v2.1h-5.6v10.99c0,2.17,1.12,3.36,3.18,3.36,1.02,0,2.03-.32,2.73-.95l.88,1.79Z"/>
+      <path d="M101.3,44.17v2.42c-.21,0-.42-.04-.59-.04-3.85,0-6.2,2.45-6.2,6.79v9.38h-2.48v-18.41h2.38v3.61c1.16-2.45,3.5-3.75,6.9-3.75Z"/>
+      <path d="M104.1,53.51c0-5.46,3.99-9.35,9.38-9.35s9.35,3.89,9.35,9.35-3.96,9.38-9.35,9.38-9.38-3.92-9.38-9.38ZM120.31,53.51c0-4.31-2.91-7.18-6.82-7.18s-6.86,2.87-6.86,7.18,2.94,7.18,6.86,7.18,6.82-2.87,6.82-7.18Z"/>
+      <path d="M132.76,42.84h-7.84v-4.62h21.35v4.62h-7.84v19.88h-5.67v-19.88Z"/>
+      <path d="M165.7,54.84h-14.25c.53,2.35,2.52,3.78,5.39,3.78,2,0,3.43-.59,4.73-1.82l2.91,3.15c-1.75,2-4.38,3.05-7.77,3.05-6.51,0-10.75-4.1-10.75-9.7s4.31-9.7,10.05-9.7,9.8,3.71,9.8,9.77c0,.42-.07,1.02-.1,1.47ZM151.38,51.66h9.28c-.38-2.38-2.17-3.92-4.62-3.92s-4.27,1.5-4.66,3.92Z"/>
+      <path d="M181.49,43.61v5.04c-.46-.04-.81-.07-1.23-.07-3.01,0-5.01,1.65-5.01,5.25v8.89h-5.46v-18.83h5.21v2.49c1.33-1.82,3.57-2.77,6.48-2.77Z"/>
+      <path d="M216.91,51.94v10.78h-5.46v-9.94c0-3.05-1.37-4.45-3.57-4.45-2.45,0-4.17,1.58-4.17,4.94v9.45h-5.46v-9.94c0-3.05-1.29-4.45-3.57-4.45-2.42,0-4.13,1.58-4.13,4.94v9.45h-5.46v-18.83h5.21v2.17c1.4-1.61,3.5-2.45,5.92-2.45,2.62,0,4.87,1.02,6.2,3.08,1.51-1.93,3.96-3.08,6.79-3.08,4.48,0,7.7,2.59,7.7,8.33Z"/>
+    </g>
+    <path d="M63.16,32.5c7.72-17.66,25.34-30,45.84-30,20.5,0,38.12,12.34,45.84,30" fill="none" stroke="#00B4D8" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    <path d="M154.84,72.5c-7.72,17.66-25.34,30-45.84,30s-38.12-12.34-45.84-30" fill="none" stroke="#00B4D8" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+  </symbol></svg>
+
+  <div class="backbar">
+    <a class="backlink" href="../recursos.html">← Volver a Recursos</a>
+  </div>
+
+  <div class="sheet">
+    <div class="pad">
+      <div class="head">
+        <svg class="logo" viewBox="0 0 218 105" preserveAspectRatio="xMinYMid meet" style="color:#1A3D5C" aria-label="ElectroTerm"><use href="#etlogo"/></svg>
+        <span class="head__tag">Climatización explicada</span>
+      </div>
+
+      <div class="hero">
+        <span class="hero__spoiler">Spoiler técnico</span>
+        <h1 class="hero__title">El viaje del calor</h1>
+        <p class="hero__sub">Un equipo de aire <b>no fabrica frío</b>: mueve calor. Lo saca de adentro y lo tira afuera, una y otra vez. Así funciona el ciclo, paso a paso.</p>
+      </div>
+
+      <div class="hint"><span class="hint__pulse"></span>Tocá cada etapa del circuito</div>
+
+      <div class="explore">
+        <!-- Diagrama -->
+        <div class="diagram">
+          <div class="diagram__halves">
+            <div class="diagram__half diagram__half--cool"></div>
+            <div class="diagram__half diagram__half--hot"></div>
+          </div>
+          <span class="zone zone--in">Interior · se enfría</span>
+          <span class="zone zone--out">Exterior · da el calor</span>
+
+          <svg class="loop" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+            <path id="loopPath" d="M120,300 L120,190 Q120,120 190,120 L410,120 Q480,120 480,190 L480,410 Q480,480 410,480 L190,480 Q120,480 120,410 Z" fill="none" stroke="none"/>
+            <!-- frío: 04 -> 01 -> 02 -->
+            <path class="flow flow--cool" d="M300,480 L190,480 Q120,480 120,410 L120,190 Q120,120 190,120 L300,120" fill="none" stroke="#00B4D8" stroke-width="6" stroke-linecap="round"/>
+            <!-- calor: 02 -> 03 -> 04 -->
+            <path class="flow flow--hot" d="M300,120 L410,120 Q480,120 480,190 L480,410 Q480,480 410,480 L300,480" fill="none" stroke="#D87941" stroke-width="6" stroke-linecap="round"/>
+            <!-- puck que recorre el circuito -->
+            <circle class="puck" r="7" fill="#fff" stroke="#00B4D8" stroke-width="3">
+              <animateMotion dur="7s" repeatCount="indefinite" rotate="auto">
+                <mpath href="#loopPath"/>
+              </animateMotion>
+            </circle>
+          </svg>
+
+          <button class="node node--1 is-active" data-c="cyan" data-i="0" type="button">
+            <span class="node__dot"><span class="node__num">01</span></span>
+            <span class="node__lbl">Evaporador</span>
+          </button>
+          <button class="node node--2" data-c="navy" data-i="1" type="button">
+            <span class="node__dot"><span class="node__num">02</span></span>
+            <span class="node__lbl">Compresor</span>
+          </button>
+          <button class="node node--3" data-c="orange" data-i="2" type="button">
+            <span class="node__dot"><span class="node__num">03</span></span>
+            <span class="node__lbl">Condensador</span>
+          </button>
+          <button class="node node--4" data-c="teal" data-i="3" type="button">
+            <span class="node__dot"><span class="node__num">04</span></span>
+            <span class="node__lbl">Expansión</span>
+          </button>
+        </div>
+
+        <!-- Panel -->
+        <div class="panel" id="panel"></div>
+      </div>
+
+      <div class="legend">
+        <span><span class="dot dot--cool"></span>Refrigerante frío</span>
+        <span><span class="dot dot--hot"></span>Refrigerante caliente</span>
+        <span>Circuito cerrado · el refrigerante nunca se gasta</span>
+      </div>
+
+      <div class="insight">
+        <div class="insight__k">¿Por qué la unidad de afuera tira aire caliente?</div>
+        <div class="insight__t">Porque está largando el calor que <b>sacó de adentro</b>, más el que agrega el compresor. No se pierde nada: el calor solo se muda de lugar.</div>
+        <div class="insight__note"><b>¿Y en invierno?</b> Un equipo frío-calor invierte el ciclo con una válvula: trae calor de afuera —sí, incluso del aire frío— y lo mete adentro. Mismo circuito, al revés.</div>
+      </div>
+
+      <div class="scale">
+        <div class="scale__t">Un mismo principio, a cualquier escala.</div>
+        <p class="scale__p">Del split de una casa al chiller de un hospital o un data center, el ciclo es siempre el mismo. Lo que cambia es la potencia, la precisión y lo que está en juego si falla. Ahí es donde pesa la ingeniería correcta.</p>
+        <a class="scale__cta" href="../index.html#contacto">Hablemos de tu proyecto →</a>
+      </div>
+    </div>
+
+    <div class="foot">
+      <div class="foot__in">
+        <svg class="logo" viewBox="0 0 218 105" preserveAspectRatio="xMinYMid meet" style="color:#fff" aria-label="ElectroTerm"><use href="#etlogo"/></svg>
+        <div class="foot__src"><b>Fuentes:</b> U.S. Department of Energy · Energy Star<br>electroterm.com.py</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const STAGES = [
+      { step:'Etapa 01 · Interior', name:'Evaporador', zone:'Interior', zoneColor:'#2B5F8D', hot:false,
+        from:'Líquido', to:'Gas', p:1, t:1,
+        desc:'El refrigerante llega frío y a baja presión. Al pasar por el evaporador absorbe el calor del aire del ambiente y hierve: se transforma en gas. Ese aire, ya sin su calor, es el que sentís fresco.',
+        analogy:'Como el alcohol en la piel: al evaporarse se lleva el calor y enfría.' },
+      { step:'Etapa 02 · El motor', name:'Compresor', zone:'La única parte que consume energía', zoneColor:'#2B5F8D', hot:true,
+        from:'Gas', to:'Gas a presión', p:3, t:3,
+        desc:'El compresor toma ese gas y lo aprieta. Al comprimirlo, su presión y su temperatura se disparan. Es el corazón del sistema y lo único que consume electricidad: el motor que mueve todo el circuito.',
+        analogy:'Como inflar una bici a mano: la bomba se calienta al comprimir el aire.' },
+      { step:'Etapa 03 · Exterior', name:'Condensador', zone:'Exterior', zoneColor:'#D87941', hot:true,
+        from:'Gas', to:'Líquido', p:3, t:2,
+        desc:'El gas caliente y a alta presión llega al condensador de la unidad exterior. Ahí entrega su calor al aire de afuera y se condensa: vuelve a ser líquido. Ese es el aire caliente que sentís en la unidad de afuera.',
+        analogy:'Como el vapor que se empaña y vuelve gota al tocar un vidrio frío.' },
+      { step:'Etapa 04 · El cierre', name:'Válvula de expansión', zone:'Vuelve a empezar', zoneColor:'#3B8A9C', hot:false,
+        from:'Líquido', to:'Líquido frío', p:1, t:1,
+        desc:'El líquido a alta presión pasa por un orificio muy fino. Del otro lado se expande, y su presión y temperatura caen de golpe. Queda frío otra vez, listo para volver al evaporador. El círculo se cierra.',
+        analogy:'Como el gas de un desodorante, que sale frío: al expandirse, se enfría.' },
+    ];
+    const COLORS = ['#00B4D8','#2B5F8D','#D87941','#3B8A9C'];
+
+    const panel = document.getElementById('panel');
+    const nodes = Array.from(document.querySelectorAll('.node'));
+    let idx = 0, auto = true, timer = null;
+
+    function bars(val, hot){
+      let h='';
+      for(let i=1;i<=3;i++){ h += '<i class="'+(i<=val?'on':'')+'"></i>'; }
+      return '<div class="gauge '+(hot?'gauge--hot':'')+'"><div class="gauge__bars">'+h+'</div></div>';
+    }
+
+    function render(i){
+      const s = STAGES[i], c = COLORS[i];
+      panel.style.borderTopColor = c;
+      panel.innerHTML =
+        '<div class="panel__step">'+s.step+'</div>'+
+        '<div class="panel__name">'+s.name+'</div>'+
+        '<div class="panel__zone" style="color:'+s.zoneColor+'">'+s.zone+'</div>'+
+        '<div class="state">'+
+          '<span class="state__p">'+s.from+'</span>'+
+          '<span class="state__arrow">→</span>'+
+          '<span class="state__p">'+s.to+'</span>'+
+        '</div>'+
+        '<div class="gauges">'+
+          '<div><div class="gauge__k">Presión</div><div class="gauge__bars '+(s.hot?'hot':'')+'">'+
+            [1,2,3].map(n=>'<i class="'+(n<=s.p?'on':'')+'" style="'+(n<=s.p?('background:'+(s.hot?'var(--orange)':'var(--primary)')):'')+'"></i>').join('')+
+          '</div></div>'+
+          '<div><div class="gauge__k">Temperatura</div><div class="gauge__bars">'+
+            [1,2,3].map(n=>'<i class="'+(n<=s.t?'on':'')+'" style="'+(n<=s.t?('background:'+(s.hot?'var(--orange)':'var(--primary)')):'')+'"></i>').join('')+
+          '</div></div>'+
+        '</div>'+
+        '<p class="panel__desc">'+s.desc+'</p>'+
+        '<div class="panel__analogy"><span class="k">En criollo</span><p>'+s.analogy+'</p></div>';
+      nodes.forEach((n,k)=> n.classList.toggle('is-active', k===i));
+      idx = i;
+    }
+
+    function stopAuto(){ auto=false; if(timer){ clearInterval(timer); timer=null; } }
+
+    nodes.forEach(n=>{
+      n.addEventListener('click', ()=>{ stopAuto(); render(parseInt(n.dataset.i)); });
+      n.addEventListener('mouseenter', ()=>{ if(auto) render(parseInt(n.dataset.i)); });
+    });
+    document.addEventListener('keydown', e=>{
+      if(e.key==='ArrowRight'){ stopAuto(); render((idx+1)%4); }
+      if(e.key==='ArrowLeft'){ stopAuto(); render((idx+3)%4); }
+    });
+
+    render(0);
+    timer = setInterval(()=>{ if(auto) render((idx+1)%4); }, 2600);
+  </script>
+</body>
+</html>

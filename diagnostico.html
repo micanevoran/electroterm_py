@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnóstico de climatización para empresas | ElectroTerm Paraguay</title>
+  <meta name="description" content="Respondé 6 preguntas y descubrí qué tan expuesta está tu operación si falla el aire acondicionado. Nivel de exposición y qué conviene revisar primero. Menos de 2 minutos.">
+  <link rel="shortcut icon" href="img/icons/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/paraguay.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo"><img src="img/logo_primary.svg" alt="ElectroTerm Paraguay" /></a>
+      <nav class="navbar__nav" id="desktopNav">
+        <a href="nosotros.html" class="navbar__link">Nosotros</a>
+        <a href="servicios.html" class="navbar__link">Servicios</a>
+        <a href="servicios.html#mantenimiento" class="navbar__link">Mantenimiento</a>
+        <a href="index.html#casos" class="navbar__link">Experiencia</a>
+        <a href="recursos.html" class="navbar__link navbar__link--active">Recursos</a>
+        <a href="index.html#contacto" class="navbar__link navbar__link--cta">Contacto</a>
+      </nav>
+      <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="navbar__mobile" id="mobileNav" aria-hidden="true">
+      <a href="nosotros.html" class="navbar__mobile-link">Nosotros</a>
+      <a href="servicios.html" class="navbar__mobile-link">Servicios</a>
+      <a href="servicios.html#mantenimiento" class="navbar__mobile-link">Mantenimiento</a>
+      <a href="index.html#casos" class="navbar__mobile-link">Experiencia</a>
+      <a href="recursos.html" class="navbar__mobile-link">Recursos</a>
+      <a href="index.html#contacto" class="navbar__mobile-link">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- ===== PANTALLA DIAGNÓSTICO (hero + widget en una sola vista) ===== -->
+  <div class="diag-stage">
+  <!-- ===== HERO CORTO (contexto + navbar legible) ===== -->
+  <section class="page-hero diag-stage__hero" style="padding-top:calc(var(--nav-h) + var(--sp-lg)); padding-bottom:var(--sp-md)">
+    <div class="wrap">
+      <span class="flag-badge">Diagnóstico para empresas</span>
+      <p class="page-hero__desc" style="margin-top:var(--sp-sm); max-width:72ch; font-size:1.15rem">Respondé unas preguntas rápidas y obtené tu nivel de exposición si falla la climatización, con lo que conviene revisar primero. Pensado para empresas con varios equipos.</p>
+    </div>
+  </section>
+
+  <!-- ===== DIAGNÓSTICO ===== -->
+  <section class="section section--alt diag-stage__body">
+    <div class="wrap">
+
+<!-- ================= INICIO WIDGET ================= -->
+<style>
+.et-diag{
+  --et-primary:#2B5F8D; --et-primary-ink:#ffffff; --et-ink:#1A3D5C; --et-muted:#5b6b7a;
+  --et-bg:#ffffff; --et-surface:#F5F3F0; --et-line:#E8E4DF;
+  --et-low:#1f9d55; --et-mid:#c98d00; --et-high:#D87941; --et-crit:#c62828;
+  --et-wa:#25D366; --et-radius:14px;
+  font-family:'Familjen Grotesk',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color:var(--et-ink); background:var(--et-bg);
+  max-width:740px; margin:0 auto; padding:44px 48px;
+  border:1px solid var(--et-line); border-radius:var(--et-radius);
+  box-shadow:0 16px 44px rgba(20,32,43,.10); line-height:1.65;
+}
+.et-diag *,.et-diag *::before,.et-diag *::after{box-sizing:border-box}
+.et-diag h2,.et-diag h3,.et-diag p{margin:0}
+.et-diag .et-kicker{font-family:'Azeret Mono',monospace;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--et-primary);margin-bottom:22px}
+.et-diag .et-title{font-family:'Syne',sans-serif;font-size:clamp(1.4rem,4vw,1.8rem);line-height:1.32;font-weight:800;letter-spacing:-0.02em;margin-bottom:28px;color:var(--et-ink)}
+.et-diag .et-sub{color:var(--et-muted);font-size:1rem;line-height:1.7;margin-bottom:32px}
+.et-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:10px;
+  padding:13px 20px;font:inherit;font-weight:650;cursor:pointer;text-decoration:none;transition:transform .1s,opacity .15s}
+.et-btn:active{transform:scale(.98)}
+.et-btn-primary{background:var(--et-primary);color:var(--et-primary-ink)}
+.et-btn-primary:hover{background:var(--et-ink)}
+.et-btn-wa{background:var(--et-wa);color:#fff;width:100%;font-size:1.02rem;padding:15px 20px}
+.et-btn-wa:hover{background:#1fb757}
+.et-btn-ghost{background:transparent;color:var(--et-muted);padding:8px 4px;font-weight:550}
+.et-btn:focus-visible,.et-opt:focus-visible,.et-input:focus-visible{outline:3px solid color-mix(in srgb,var(--et-primary) 45%,transparent);outline-offset:2px}
+.et-diag .et-trust{margin-top:12px;font-size:.85rem;color:var(--et-muted)}
+.et-progress{height:6px;background:var(--et-surface);border-radius:99px;overflow:hidden;margin-bottom:8px}
+.et-progress span{display:block;height:100%;background:var(--et-primary);transition:width .3s ease}
+.et-step{font-family:'Azeret Mono',monospace;font-size:.78rem;color:var(--et-muted);margin-bottom:18px;letter-spacing:.04em}
+.et-q{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;line-height:1.3;margin-bottom:6px}
+.et-help{color:var(--et-muted);font-size:.9rem;margin-bottom:14px}
+.et-opts{display:grid;gap:10px;margin:16px 0 14px}
+.et-opt{text-align:left;width:100%;padding:14px 16px;border:1.5px solid var(--et-line);border-radius:10px;
+  background:var(--et-bg);font:inherit;color:inherit;cursor:pointer;transition:border-color .15s,background .15s}
+.et-opt:hover{border-color:var(--et-primary)}
+.et-opt[aria-checked="true"]{border-color:var(--et-primary);background:color-mix(in srgb,var(--et-primary) 8%,var(--et-bg))}
+.et-level{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:10px}
+.et-level-name{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;letter-spacing:-0.02em}
+.et-level-score{font-family:'Azeret Mono',monospace;color:var(--et-muted);font-size:.9rem;white-space:nowrap}
+.et-gauge{height:12px;border-radius:99px;background:var(--et-surface);overflow:hidden;margin-bottom:22px}
+.et-gauge span{display:block;height:100%;border-radius:99px;transition:width .6s ease}
+.et-summary{margin-bottom:30px;font-size:1.05rem}
+.et-findings{display:grid;gap:14px;margin-bottom:30px}
+.et-finding{background:var(--et-surface);border-radius:10px;padding:18px 20px;border-left:3px solid var(--et-primary)}
+.et-finding h3{font-family:'Syne',sans-serif;font-size:.98rem;margin-bottom:4px;color:var(--et-ink)}
+.et-finding p{font-size:.92rem;color:var(--et-muted)}
+.et-label{display:block;font-size:.88rem;font-weight:600;margin-bottom:6px}
+.et-input{width:100%;padding:12px 14px;border:1.5px solid var(--et-line);border-radius:10px;font:inherit;margin-bottom:14px;background:var(--et-bg);color:inherit}
+.et-note{font-size:.8rem;color:var(--et-muted);margin-top:12px}
+.et-row{display:flex;justify-content:space-between;align-items:center;margin-top:16px}
+@media (max-width:420px){.et-diag{padding:32px 22px}}
+/* ----- Pantalla completa: hero + card en una sola vista, sin scroll ----- */
+.diag-stage{min-height:100vh;display:flex;flex-direction:column}
+.diag-stage__hero{flex:0 0 auto}
+.section.diag-stage__body{flex:1 1 auto;display:flex;align-items:center;justify-content:center;padding-top:var(--sp-lg);padding-bottom:var(--sp-lg)}
+.diag-stage__body > .wrap{width:100%}
+@media (max-width:640px){
+  .diag-stage{min-height:auto}
+  .section.diag-stage__body{padding-top:var(--sp-xl);padding-bottom:var(--sp-xl)}
+}
+</style>
+
+<section class="et-diag" id="et-diag" aria-live="polite"></section>
+
+<script>
+(function(){
+  /* ===== CONFIGURACIÓN ===== */
+  const WHATSAPP = "595985368085";      // número con código de país, sin + ni espacios
+  const REF = "diagnostico-web";         // etiqueta para saber de dónde vino la consulta
+
+  const QUESTIONS = [
+    {id:"rubro", label:"Rubro", q:"¿En qué rubro opera tu empresa?", opts:[
+      ["Salud (clínica, sanatorio, laboratorio)",20],
+      ["Data center o sala de servidores",20],
+      ["Supermercado o retail",15],
+      ["Industria o depósito",15],
+      ["Gastronomía u hotelería",12],
+      ["Oficinas o servicios profesionales",8],
+      ["Otro",10]]},
+    {id:"equipos", label:"Equipos", q:"¿Cuántos equipos de climatización tienen en total?", help:"Sumá todas las sedes.", opts:[
+      ["1 a 5",3],["6 a 20",8],["21 a 50",12],["Más de 50",15]]},
+    {id:"antig", label:"Antigüedad promedio", q:"¿Qué antigüedad promedio tienen los equipos?", opts:[
+      ["Menos de 3 años",2],["3 a 7 años",6],["8 a 12 años",11],["Más de 12 años",15],["No lo sé",10]]},
+    {id:"mant", label:"Mantenimiento actual", q:"¿Cómo hacen hoy el mantenimiento?", opts:[
+      ["Preventivo programado y documentado",0],
+      ["Preventivo, pero sin registro formal",8],
+      ["Solo cuando algo falla",18],
+      ["No lo sé",14]]},
+    {id:"impacto", label:"Si falla un equipo", q:"Si un equipo importante deja de funcionar en pleno verano, ¿qué pasa?", opts:[
+      ["Seguimos operando normalmente",0],
+      ["Hay incomodidad, pero se trabaja",5],
+      ["Afecta ventas o la atención al público",12],
+      ["Hay que frenar o se pierden productos o equipos",17]]},
+    {id:"hist", label:"Historial por equipo", q:"¿Pueden ver el historial de cada equipo?", help:"Último service, fallas, repuestos cambiados.", opts:[
+      ["Sí, de todos los equipos",0],["De algunos, o está disperso",7],["No",13]]}
+  ];
+
+  const MAX = QUESTIONS.reduce((s,q)=>s+Math.max(...q.opts.map(o=>o[1])),0);
+
+  const LEVELS = [
+    {min:75, name:"Exposición crítica", color:"var(--et-crit)",
+     text:"Tu operación depende de la climatización y hoy está poco protegida. Recomendamos una evaluación técnica prioritaria, antes de los picos de calor."},
+    {min:55, name:"Exposición alta", color:"var(--et-high)",
+     text:"Una falla de climatización podría afectar tu operación. Conviene ordenar el mantenimiento antes de la temporada de calor."},
+    {min:30, name:"Exposición moderada", color:"var(--et-mid)",
+     text:"Hay puntos a mejorar. Una falla no sería grave, pero buena parte del riesgo se puede evitar con poco."},
+    {min:0, name:"Exposición baja", color:"var(--et-low)",
+     text:"Tu operación está bien protegida. Lo importante es sostener el mantenimiento y revisar la capacidad antes de cada verano."}
+  ];
+
+  const root = document.getElementById("et-diag");
+  let step = -1;                      // -1 = intro
+  const answers = {};                 // id -> índice de opción
+
+  function track(name, params){
+    try{
+      if(window.dataLayer) window.dataLayer.push(Object.assign({event:name},params||{}));
+      if(window.gtag) window.gtag("event", name, params||{});
+    }catch(e){}
+  }
+  const esc = s => String(s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+  function renderIntro(){
+    root.innerHTML = `
+      <p class="et-kicker">Diagnóstico para empresas</p>
+      <h2 class="et-title">¿Qué tan expuesta está tu operación si falla el aire?</h2>
+      <p class="et-sub">Seis preguntas, menos de un minuto. Al final te mostramos tu nivel de exposición y qué conviene revisar primero.</p>
+      <button class="et-btn et-btn-primary" data-act="start">Empezar diagnóstico</button>
+      <p class="et-trust">Respaldo de más de 40 años de experiencia en climatización.</p>`;
+  }
+
+  function renderQuestion(){
+    const q = QUESTIONS[step];
+    const pct = Math.round((step)/QUESTIONS.length*100);
+    root.innerHTML = `
+      <div class="et-progress" aria-hidden="true"><span style="width:${pct}%"></span></div>
+      <p class="et-step">Pregunta ${step+1} de ${QUESTIONS.length}</p>
+      <h2 class="et-q" id="et-q">${esc(q.q)}</h2>
+      ${q.help?`<p class="et-help">${esc(q.help)}</p>`:""}
+      <div class="et-opts" role="radiogroup" aria-labelledby="et-q">
+        ${q.opts.map((o,i)=>`<button class="et-opt" role="radio" aria-checked="${answers[q.id]===i}" data-opt="${i}">${esc(o[0])}</button>`).join("")}
+      </div>
+      <div class="et-row"><button class="et-btn et-btn-ghost" data-act="back">← Volver</button></div>`;
+    const first = root.querySelector('.et-opt[aria-checked="true"]') || root.querySelector(".et-opt");
+    first && first.focus({preventScroll:true});
+  }
+
+  function score(){
+    const raw = QUESTIONS.reduce((s,q)=>s+q.opts[answers[q.id]][1],0);
+    return Math.round(raw/MAX*100);
+  }
+
+  function findings(){
+    const a = answers, f = [];
+    if(a.rubro===0) f.push(["La climatización es crítica en tu rubro","En salud, la temperatura y la humedad inciden en la atención, el confort de los pacientes y la conservación de insumos. Los equipos críticos necesitan prioridad y respaldo."]);
+    if(a.rubro===1) f.push(["La climatización es crítica en tu rubro","En una sala de servidores, una falla puede provocar sobrecalentamiento y apagado de equipos en poco tiempo. Conviene evaluar redundancia y monitoreo de temperatura."]);
+    if(a.impacto===3) f.push(["Una falla frena tu operación","Identificá qué equipos son críticos, definí un respaldo y priorizalos en el plan de mantenimiento."]);
+    else if(a.impacto===2) f.push(["Una falla impacta en tus clientes","El calor en el salón o en la zona de atención afecta ventas y experiencia. En verano, el tiempo de respuesta del proveedor es clave."]);
+    if(a.mant===2) f.push(["El mantenimiento es solo correctivo","Las fallas llegan sin aviso, en el peor momento y con repuestos a precio de urgencia. Un plan preventivo detecta el desgaste antes de que el equipo pare."]);
+    else if(a.mant===3) f.push(["No hay claridad sobre el mantenimiento","Si nadie sabe cuándo se revisó cada equipo, en la práctica no hay plan. El primer paso es definir frecuencias y responsables."]);
+    else if(a.mant===1) f.push(["Hay preventivo, pero sin trazabilidad","Sin registro formal no podés verificar qué se hizo ni controlar la calidad del servicio."]);
+    if(a.antig===3) f.push(["Parque de equipos envejecido","Los equipos de más de 12 años suelen consumir más energía, tener repuestos más difíciles de conseguir y, en algunos casos, usar refrigerantes en proceso de eliminación como el R-22. Conviene definir qué reparar y qué planificar reemplazar."]);
+    else if(a.antig===2) f.push(["Equipos en etapa de mayor desgaste","Entre los 8 y 12 años suelen aparecer más fallas en compresores y motores. El preventivo pesa más que nunca."]);
+    else if(a.antig===4) f.push(["No conocen la antigüedad de los equipos","Un relevamiento inicial (marca, modelo, año y estado) es la base de cualquier plan de mantenimiento o reemplazo."]);
+    if(a.hist>=1) f.push(["Falta historial por equipo","Sin registro de cada intervención es difícil anticipar fallas, controlar al proveedor y decidir cuándo conviene reparar o reemplazar."]);
+    if(a.equipos>=2) f.push(["Muchos equipos para coordinar","Con más de 20 equipos, programar services, seguir pendientes y controlar costos a mano se vuelve inmanejable. Hace falta un calendario y reportes por equipo y sede."]);
+    if(!f.length) f.push(["Tu operación está bien encaminada","Mantener el preventivo documentado y revisar la capacidad antes del verano es lo que sostiene este nivel."]);
+    return f.slice(0,4);
+  }
+
+  function buildMessage(sc, level, company){
+    const lines = ["Hola Electroterm, hice el diagnóstico en la web."];
+    if(company) lines.push("Empresa: "+company);
+    QUESTIONS.forEach(q=>lines.push(q.label+": "+q.opts[answers[q.id]][0]));
+    lines.push("Resultado: "+level.name+" ("+sc+"/100)");
+    lines.push("Quisiera coordinar una evaluación técnica.");
+    lines.push("[ref: "+REF+"]");
+    return lines.join("\n");
+  }
+
+  function renderResult(){
+    const sc = score();
+    const level = LEVELS.find(l=>sc>=l.min);
+    track("diag_complete",{score:sc, level:level.name});
+    root.innerHTML = `
+      <p class="et-kicker">Tu resultado</p>
+      <div class="et-level">
+        <h2 class="et-level-name" style="color:${level.color}">${level.name}</h2>
+        <span class="et-level-score">${sc} / 100</span>
+      </div>
+      <div class="et-gauge" aria-hidden="true"><span style="width:0;background:${level.color}"></span></div>
+      <p class="et-summary">${level.text}</p>
+      <div class="et-findings">
+        ${findings().map(([t,d])=>`<div class="et-finding"><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join("")}
+      </div>
+      <label class="et-label" for="et-company">Empresa (opcional)</label>
+      <input class="et-input" id="et-company" type="text" autocomplete="organization" placeholder="Nombre de tu empresa">
+      <a class="et-btn et-btn-wa" data-act="wa" href="#" target="_blank" rel="noopener">Coordinar una evaluación por WhatsApp</a>
+      <p class="et-note">Resultado orientativo según tus respuestas. No reemplaza un relevamiento técnico en sitio. Tus respuestas viajan en el mensaje para que no tengas que repetirlas.</p>
+      <div class="et-row"><button class="et-btn et-btn-ghost" data-act="restart">Volver a empezar</button></div>`;
+    requestAnimationFrame(()=>{ root.querySelector(".et-gauge span").style.width = sc+"%"; });
+    const wa = root.querySelector('[data-act="wa"]');
+    const input = root.querySelector("#et-company");
+    const update = ()=>{ wa.href = "https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(buildMessage(sc, level, input.value.trim())); };
+    input.addEventListener("input", update); update();
+  }
+
+  function render(){
+    if(step<0) renderIntro();
+    else if(step<QUESTIONS.length) renderQuestion();
+    else renderResult();
+  }
+
+  root.addEventListener("click", e=>{
+    const t = e.target.closest("[data-act],[data-opt]");
+    if(!t) return;
+    if(t.dataset.opt!==undefined){
+      answers[QUESTIONS[step].id] = Number(t.dataset.opt);
+      root.querySelectorAll(".et-opt").forEach(b=>b.setAttribute("aria-checked", b===t));
+      setTimeout(()=>{ step++; render(); }, 160);
+      return;
+    }
+    const act = t.dataset.act;
+    if(act==="start"){ step=0; track("diag_start"); render(); }
+    else if(act==="back"){ step--; render(); }
+    else if(act==="restart"){ step=-1; Object.keys(answers).forEach(k=>delete answers[k]); render(); }
+    else if(act==="wa"){ track("diag_whatsapp_click",{score:score()}); }
+  });
+
+  render();
+})();
+</script>
+<!-- ================= FIN WIDGET ================= -->
+
+    </div>
+  </section>
+
+  </div><!-- /diag-stage -->
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo"><img src="img/logo_accent_cyan.svg" alt="ElectroTerm" /></a>
+        <p>Empresa argentina con más de 40 años diseñando sistemas de climatización de alta complejidad para hospitales, data centers, edificios e industrias. Hoy en Paraguay.</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="label-sm">SERVICIOS</h4>
+        <span>Ingeniería</span>
+        <span>Instalación y Puesta en Marcha</span>
+        <span>Mantenimiento</span>
+        <span>Distribución</span>
+      </div>
+      <div class="footer__col">
+        <h4 class="label-sm">SECTORES</h4>
+        <span>Salud</span>
+        <span>Data centers</span>
+        <span>Corporativo</span>
+        <span>Industria</span>
+        <span>Tiendas y Centros Comerciales</span>
+        <span>Supermercados y farmacias</span>
+        <span>Gastronomía</span>
+        <span>Residencial</span>
+      </div>
+      <div class="footer__col">
+        <h4 class="label-sm">CONTACTO</h4>        <span>+595 985 368085</span>
+        <span>contacto@electroterm.com.py</span>      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="label-sm">2026 | ELECTROTERM®</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
