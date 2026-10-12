@@ -572,16 +572,16 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   min-height: 70px;
 }
 .accordion__item:nth-child(1) {
-  background-image: url('../img/servicios/ingenieria.png');
+  background-image: url('../img/servicios/ingenieria.webp');
 }
 .accordion__item:nth-child(2) {
-  background-image: url('../img/servicios/instalacion_y_pm.png');
+  background-image: url('../img/servicios/instalacion_y_pm.webp');
 }
 .accordion__item:nth-child(3) {
-  background-image: url('../img/servicios/mantenimiento.png');
+  background-image: url('../img/servicios/mantenimiento.webp');
 }
 .accordion__item:nth-child(4) {
-  background-image: url('../img/servicios/distribucion.png');
+  background-image: url('../img/servicios/distribucion.webp');
 }
 
 /* Overlay oscuro */
